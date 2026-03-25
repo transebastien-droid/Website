@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sebastien Tran – Dean of Audencia Business School</title>
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f5f6f8;
+      color: #1a1a2e;
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Palette ── */
+    :root {
+      --navy:   #0d1b3e;
+      --blue:   #1a4480;
+      --accent: #c8922a;
+      --light:  #eef2f8;
+      --card:   #ffffff;
+      --muted:  #6b7280;
+      --border: #dde3ee;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      color: #fff;
+      padding: 80px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 40%, rgba(200,146,42,.15) 0%, transparent 60%);
+    }
+    .hero-inner { position: relative; max-width: 800px; margin: 0 auto; }
+    .avatar {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      object-fit: cover;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+    }
+    .hero h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -.5px; }
+    .hero .title {
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 8px 0 4px;
+    }
+    .hero .location { font-size: .95rem; opacity: .8; margin-bottom: 24px; }
+    .contact-bar {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+      margin-top: 20px;
+    }
+    .contact-bar a {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: .875rem;
+      transition: background .2s;
+    }
+    .contact-bar a:hover { background: rgba(255,255,255,.22); }
+    .contact-bar svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── Layout ── */
+    .container { max-width: 1060px; margin: 0 auto; padding: 48px 24px; }
+    .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; }
+    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      border: 1px solid var(--border);
+    }
+    .card + .card { margin-top: 24px; }
+
+    /* ── Section headings ── */
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--blue);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+
+    /* ── About ── */
+    .about-text { font-size: .97rem; color: #333; }
+
+    /* ── Timeline ── */
+    .timeline { list-style: none; }
+    .timeline li {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline li:last-child { border-bottom: none; }
+    .tl-year {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--accent);
+      padding-top: 2px;
+      white-space: nowrap;
+    }
+    .tl-body strong { font-size: .97rem; display: block; }
+    .tl-body span { font-size: .875rem; color: var(--muted); }
+
+    /* ── Skills ── */
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .skill-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .9rem;
+    }
+    .skill-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0; margin-top: 7px;
+    }
+
+    /* ── Research tags ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* ── Stats grid ── */
+    .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .stat {
+      background: var(--light);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-number { font-size: 2rem; font-weight: 800; color: var(--blue); }
+    .stat-label { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; margin-top: 2px; }
+
+    /* ── Education ── */
+    .edu-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .edu-list li { display: flex; gap: 14px; }
+    .edu-year {
+      min-width: 40px; font-size: .82rem; font-weight: 700;
+      color: var(--accent); padding-top: 2px;
+    }
+    .edu-detail strong { font-size: .94rem; display: block; }
+    .edu-detail span { font-size: .85rem; color: var(--muted); }
+
+    /* ── Publications sample ── */
+    .pub-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .pub-list li {
+      font-size: .875rem;
+      padding-left: 14px;
+      border-left: 3px solid var(--accent);
+    }
+    .pub-list li em { color: var(--muted); }
+
+    /* ── Media highlights ── */
+    .media-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .media-badge {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: .8rem;
+      font-weight: 600;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 16px;
+      font-size: .82rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════ HERO ════════════════ -->
+<header class="hero">
+  <div class="hero-inner">
+    <a href="https://www.audencia.com" target="_blank" rel="noopener">
+      <img src="audencia-logo.svg" alt="Audencia Business School" style="height:48px;margin-bottom:20px;filter:brightness(0) invert(1);" />
+    </a><br>
+    <img src="photo.jpg" alt="Sébastien Tran" class="avatar" />
+
+    <h1>Sébastien Tran</h1>
+    <p class="title">Dean (Directeur Général) — Audencia Business School</p>
+    <p class="location">&#127759; France</p>
+
+    <div class="contact-bar">
+      <a href="mailto:stran@audencia.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        stran@audencia.com
+      </a>
+      <a href="mailto:tran.sebastien@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        tran.sebastien@gmail.com
+      </a>
+      <a href="tel:+33699431803">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 5.99 5.99l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+        +33 6 99 43 18 03
+      </a>
+      <a href="https://www.linkedin.com/in/sebastien-tran-415b355/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://x.com/sebtran" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        X (Twitter)
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════ MAIN ════════════════ -->
+<main class="container">
+
+  <!-- About – full width -->
+  <div class="card" style="margin-bottom:32px;">
+    <h2 class="section-title">About</h2>
+    <p class="about-text">
+      Sébastien Tran is the Dean of <strong>Audencia Business School</strong> (founded 1900, triple-crown accredited: EQUIS, AACSB &amp; AMBA), one of Europe's leading business schools with campuses in Nantes, Paris, La Roche-sur-Yon, Barcelone, Shenzhen, Shanghai, Chengdu and São Paulo. He holds a <strong>PhD in Industrial Organization</strong> from Paris Dauphine University (EQUIS accredited) and a <strong>Habilitation to Supervise Research (HDR)</strong> in Management Sciences from the University of Rouen.
+    </p>
+    <p class="about-text" style="margin-top:12px;">
+      With <strong>more than 20 years of experience</strong> in higher education leadership across multiple institutions, he has published extensively on innovation management, strategic management, and Information Systems. His current research focuses on <em>managerial innovation, the future of work, Artificial Intelligence and Entrepreneurship</em>.
+    </p>
+  </div>
+
+  <div class="grid">
+
+    <!-- ── LEFT COLUMN ── -->
+    <div>
+
+      <!-- Interviews vidéo -->
+      <div class="card">
+        <h2 class="section-title">Interviews vidéo</h2>
+        <ul class="pub-list">
+          <li>
+            <a href="https://www.youtube.com/watch?v=XrqANN8uyBs" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">STOA 2030 : Sébastien Tran présente le nouveau plan stratégique d'Audencia</a><br>
+            <em style="font-size:.85rem;">DG sur Écoute — Chaîne Thotis
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;vertical-align:middle;margin-left:4px;color:#FF0000;"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+            </em>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=AM-hI5M1DP0" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">Tout savoir sur Audencia, interview de Sébastien Tran</a><br>
+            <em style="font-size:.85rem;">Chaîne Studyrama
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;vertical-align:middle;margin-left:4px;color:#FF0000;"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+            </em>
+          </li>
+          <li>
+            <a href="https://www.dailymotion.com/video/x90genw" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">ChatGPT va-t-il disrupter l'enseignement supérieur ?</a><br>
+            <em style="font-size:.85rem;">XerfiCanal</em>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Ouvrages -->
+      <div class="card">
+        <h2 class="section-title">Ouvrage</h2>
+        <div style="display:flex;gap:16px;align-items:flex-start;">
+          <img src="ouvrage_flexibilite.jpg" alt="Explorer la flexibilité des nouveaux modes d'organisation du travail" style="width:90px;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.15);flex-shrink:0;" />
+          <div>
+            <strong style="font-size:.95rem;">Explorer la flexibilité des nouveaux modes d'organisation du travail</strong><br>
+            <span style="font-size:.85rem;color:var(--muted);">Tran S. &amp; Berkani A. (dir.) — Éditions Management et Société (EMS), 2025</span><br>
+            <span style="font-size:.8rem;color:var(--muted);">Collection « Questions de société »</span><br>
+            <a href="https://editions-ems.fr/boutique/explorer-la-flexibilite-des-nouveaux-modes-dorganisation-du-travail/" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:.82rem;font-weight:600;color:#fff;background:var(--accent);padding:5px 14px;border-radius:999px;text-decoration:none;">Commander l'ouvrage →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Skills -->
+      <div class="card">
+        <h2 class="section-title">Key Skills</h2>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span><div><strong>Programme Management</strong><br><small>Accreditation standards, curriculum development, innovative teaching methods</small></div></li>
+          <li><span class="skill-dot"></span><div><strong>Faculty Management</strong><br><small>Recruitment, workload management, incentive procedures</small></div></li>
+          <li><span class="skill-dot"></span><div><strong>Accreditations &amp; Quality</strong><br><small>AACSB, EQUIS, EPAS (EFMD), ISO 9001, French government labels</small></div></li>
+          <li><span class="skill-dot"></span><div><strong>Research Management</strong><br><small>Research lab organisation, budget management, industry contracts</small></div></li>
+          <li><span class="skill-dot"></span><div><strong>International Development</strong><br><small>Student recruitment, double degrees, campus delocalization</small></div></li>
+          <li><span class="skill-dot"></span><div><strong>Institutional Communication</strong><br><small>Web TV, fairs, press interviews</small></div></li>
+        </ul>
+      </div>
+
+      <!-- Research Areas -->
+      <div class="card">
+        <h2 class="section-title">Research Areas</h2>
+        <div class="tags">
+          <span class="tag">Innovation Management</span>
+          <span class="tag">Information Systems</span>
+          <span class="tag">Strategic Management</span>
+          <span class="tag">Entrepreneurship</span>
+          <span class="tag">Future of Work</span>
+          <span class="tag">Managerial Innovation</span>
+          <span class="tag">Artificial Intelligence</span>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="card">
+        <h2 class="section-title">Education</h2>
+        <ul class="edu-list">
+          <li>
+            <span class="edu-year">2013</span>
+            <div class="edu-detail">
+              <strong>Accreditation to Supervise Research (HDR)</strong>
+              <span>Management Sciences — University of Rouen</span>
+            </div>
+          </li>
+          <li>
+            <span class="edu-year">2003</span>
+            <div class="edu-detail">
+              <strong>PhD in Industrial Organization</strong>
+              <span>Paris Dauphine University (EQUIS)</span>
+            </div>
+          </li>
+          <li>
+            <span class="edu-year">2000</span>
+            <div class="edu-detail">
+              <strong>Master — Organization &amp; Innovation</strong>
+              <span>Paris Dauphine University (EQUIS)</span>
+            </div>
+          </li>
+          <li>
+            <span class="edu-year">1999</span>
+            <div class="edu-detail">
+              <strong>BBA — Management &amp; Finance</strong>
+              <span>Reims University <em>(Valedictorian)</em></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Media -->
+      <div class="card">
+        <h2 class="section-title">Media &amp; Press</h2>
+        <p style="font-size:.875rem;color:var(--muted);margin-bottom:12px;">30+ contributions in major outlets</p>
+        <div class="media-grid">
+          <span class="media-badge">HBR France</span>
+          <span class="media-badge">The Conversation</span>
+          <span class="media-badge">XERFI</span>
+          <span class="media-badge">APEC RH</span>
+          <span class="media-badge">L'Expansion Management Review</span>
+          <span class="media-badge">Journal des Grandes Écoles</span>
+          <span class="media-badge">Newstank</span>
+          <span class="media-badge">Le Figaro Étudiant</span>
+          <span class="media-badge">Major Prépa</span>
+          <span class="media-badge">Thotis</span>
+          <span class="media-badge">Studyrama</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── RIGHT COLUMN ── -->
+    <div>
+
+      <!-- Academic Output stats -->
+      <div class="card">
+        <h2 class="section-title">Academic Output</h2>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-number">18</div>
+            <div class="stat-label">Peer-reviewed articles</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Books &amp; book chapters</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">51</div>
+            <div class="stat-label">Conference papers</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Research contracts</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Career -->
+      <div class="card">
+        <h2 class="section-title">Career</h2>
+        <ul class="timeline">
+          <li>
+            <span class="tl-year">2024 – now</span>
+            <div class="tl-body">
+              <strong>Dean — Audencia Business School</strong>
+              <span>Nantes / Paris, France · EQUIS / AACSB / AMBA</span>
+            </div>
+          </li>
+          <li>
+            <span class="tl-year">2022 – 2023</span>
+            <div class="tl-body">
+              <strong>Director General — De Vinci Higher Education</strong>
+              <span>Paris, France</span>
+            </div>
+          </li>
+          <li>
+            <span class="tl-year">2019 – 2022</span>
+            <div class="tl-body">
+              <strong>Deputy Director — De Vinci Higher Education</strong>
+              <span>Paris, France</span>
+            </div>
+          </li>
+          <li>
+            <span class="tl-year">2017 – 2024</span>
+            <div class="tl-body">
+              <strong>Dean — EMLV Paris la Défense</strong>
+              <span>Paris, France · AACSB / EFMD Accredited / AMBA</span>
+            </div>
+          </li>
+          <li>
+            <span class="tl-year">2014 – 2017</span>
+            <div class="tl-body">
+              <strong>Associate Dean — ISC Paris</strong>
+              <span>Paris, France · AACSB / AMBA</span>
+            </div>
+          </li>
+          <li>
+            <span class="tl-year">2010 – 2014</span>
+            <div class="tl-body">
+              <strong>Dean for Faculty — EM Normandie</strong>
+              <span>Caen / Le Havre / Paris / Oxford / Dublin · EQUIS / AACSB / AMBA</span>
+            </div>
+          </li>
+          <li>
+            <span class="tl-year">2006 – 2010</span>
+            <div class="tl-body">
+              <strong>Director of Academic Affairs — Excelia</strong>
+              <span>La Rochelle, France · EQUIS / AACSB / AMBA</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Selected publications -->
+      <div class="card">
+        <h2 class="section-title">Selected Publications</h2>
+        <ul class="pub-list">
+          <li>Guyottot, Couston &amp; Tran (2024). The impact of coopetition on student recruitment in Higher Education: a study of French business schools' admission strategy. <em>Higher Education Quarterly</em></li>
+          <li>Loux, Tran &amp; Aubry (2021). L'impact de la dématérialisation des contrats de travaux publics. <em>Politiques &amp; Management Public, 38(3)</em></li>
+          <li>Favre-Bonté, Arreola &amp; Tran (2021). A new kind of strategic factor market to access strategic resources. <em>M@n@gement, 24(3)</em> — CNRS 2 / FNEGE 2</li>
+          <li>Loux, Aubry, Tran &amp; Baudoin (2020). Multi-sided platforms in B2B contexts. <em>Industrial Marketing Management, 84</em> — CNRS 2 / FNEGE 2</li>
+          <li>Canet &amp; Tran (2017). Quel est le rôle du substrat technique dans l'appropriation d'une innovation managériale. <em>Management International</em> — CNRS 3 / FNEGE 2</li>
+          <li>Tran &amp; Bertin (2015). Changing organizational models of IT departments as a result of cloud computing. <em>Systèmes d'Information et Management, 20(4)</em> — CNRS 2 / FNEGE 2</li>
+          <li>Tran (2007). TIC et jeu concurrentiel : le cas des places de marché électroniques. <em>Revue Française de Gestion, 33(173)</em> — CNRS 3 / FNEGE 2</li>
+        </ul>
+      </div>
+
+      <!-- Tribunes -->
+      <div class="card">
+        <h2 class="section-title">Mes dernières tribunes</h2>
+        <ul class="pub-list">
+          <li>
+            <a href="https://etudiant.lefigaro.fr/article/etudes/a-l-ere-de-l-ia-l-avenir-appartient-a-ceux-qui-sauront-encore-lire-des-livres-20260306/" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">À l'ère de l'IA, l'avenir appartient à ceux qui sauront encore lire des livres</a><br>
+            <em>Le Figaro Étudiant — mars 2026</em><br>
+            <span style="font-size:.85rem;color:#333;">À l'heure où l'IA transforme les usages, la lecture reste une compétence fondamentale pour les décideurs de demain.</span>
+          </li>
+          <li>
+            <a href="https://globalfocusmagazine.com/the-attention-economys-challenge-how-business-schools-must-address-the-cognitive-crisis/" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">The Attention Economy's Challenge: How Business Schools Must Address the Cognitive Crisis</a><br>
+            <em>Global Focus Magazine — janvier 2026</em><br>
+            <span style="font-size:.85rem;color:#333;">Comment l'économie de l'attention crée une crise cognitive que les business schools doivent prendre en charge pour former les leaders de demain.</span>
+          </li>
+          <li>
+            <a href="https://www.cge.asso.fr/liste-actualites/ia4all-experience-innovante-audencia/" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">AI4ALL : l'expérience innovante d'Audencia</a><br>
+            <em>Conférence des grandes écoles (CGE) — décembre 2025</em><br>
+            <span style="font-size:.85rem;color:#333;">Audencia lance AI4ALL, un programme dédié à tous les étudiants de première année pour acquérir les fondamentaux de l'intelligence artificielle.</span>
+          </li>
+          <li>
+            <a href="https://blog.headway-advisory.com/nous-avons-realise-la-meilleure-rentree-de-lhistoire-daudencia-sebastien-tran-directeur-general-daudencia-bs/" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">« Nous avons réalisé la meilleure rentrée de l'histoire d'Audencia »</a><br>
+            <em>Blog Headway — décembre 2025</em><br>
+          </li>
+          <li>
+            <a href="https://management-datascience.org/articles/45302/" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">La clé pour maîtriser l'IA : savoir combiner « intelligemment » les plateformes !</a><br>
+            <em>Management &amp; Data Science — mars 2025</em><br>
+          </li>
+          <li>
+            <a href="https://www.hbrfrance.fr/strategie/la-guerre-des-ia-aura-t-elle-lieu-60673" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">La guerre des IA aura-t-elle lieu ?</a><br>
+            <em>Harvard Business Review France — 2025</em><br>
+          </li>
+          <li>
+            <a href="https://www.hbrfrance.fr/innovation/linnovation-et-la-transition-ecologique-sont-ils-vraiment-compatibles-60292" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">L'innovation et la transition écologique sont-ils vraiment compatibles ?</a><br>
+            <em>Harvard Business Review France — 2024</em><br>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Research contracts -->
+      <div class="card">
+        <h2 class="section-title">Research Grants &amp; Contracts</h2>
+        <ul class="pub-list">
+          <li>Co-holder — <strong>NEXT Chair on Future of Work</strong> (OBEA), 36-month contract, 45 K€ (2022–2025)</li>
+          <li>Scientific Lead — <strong>ANR Pilot 2.0</strong>: organizational capabilities in extended enterprises (2007–2010)</li>
+          <li>Scientific Lead — <strong>ARDECO</strong>: 24-month research contract, 228 K€ (Orange, Oberthur, Gemplus)</li>
+          <li>Scientific Lead — <strong>Egov-Bat</strong>: 36-month contract with Région Basse-Normandie, 140 K€</li>
+          <li>Scientific Lead — <strong>CIGREF Web 2.0 impact study</strong>, 20 K€ (2010–2011)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- About Audencia – full width -->
+  <div class="card" style="margin-top:32px;">
+    <h2 class="section-title">About Audencia</h2>
+    <p class="about-text">
+      Founded in 1900, Audencia is among the best European business schools. Regularly ranked in the world's upper tier by <em>The Financial Times</em>, Audencia is accredited by <strong>EQUIS, AACSB and AMBA</strong>. It is therefore part of the small number of schools worldwide who hold this 'triple crown' accreditation. Audencia campuses are based in Nantes, Paris, La Roche-sur-Yon, Barcelone, Shanghai, Shenzhen, Chengdu and São Paulo.
+    </p>
+    <p class="about-text" style="margin-top:12px;">
+      First French management school to adhere to the UN's Global Compact, and a signatory of its Principles of Responsible Management Education, Audencia has long been committed to educating and guiding tomorrow's responsible managers and entrepreneurs. Audencia offers programmes in management and communication from bachelor to doctoral level. The school has signed accords with 280 international academic institutions and more than 180 national and international firms. Audencia is home to more than 8,800 students, close to 180 faculty members and has a network of over 47,000 alumni.
+    </p>
+    <a href="https://www.audencia.com" target="_blank" rel="noopener" style="display:inline-block;margin-top:16px;font-size:.875rem;font-weight:600;color:#fff;background:var(--blue);padding:8px 20px;border-radius:999px;text-decoration:none;">Visit audencia.com →</a>
+  </div>
+
+</main>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <p>Sébastien Tran &nbsp;·&nbsp; Dean of Audencia Business School &nbsp;·&nbsp;
+    <a href="mailto:stran@audencia.com" style="color:var(--blue);">stran@audencia.com</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:tran.sebastien@gmail.com" style="color:var(--blue);">tran.sebastien@gmail.com</a>
+  </p>
+</footer>
+
+</body>
+</html>
