@@ -361,10 +361,12 @@
     }
 
     /* ── SECTION PHOTO (video interviews portrait) ── */
+    .video-layout { display: grid; grid-template-columns: 1fr 240px; gap: 36px; align-items: start; }
+    @media (max-width: 760px) { .video-layout { grid-template-columns: 1fr; } .video-side { order: -1; max-width: 240px; } }
     .section-photo {
-      width: 240px; max-width: 45%; aspect-ratio: 3/4; object-fit: cover;
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
       object-position: 50% 8%;
-      border: 1px solid var(--rule); margin-bottom: 28px;
+      border: 1px solid var(--rule);
       filter: grayscale(.1) contrast(1.02);
     }
 
@@ -515,7 +517,7 @@
           <li><span class="tl-year serif">2024 — <span data-i18n="career.now">aujourd'hui</span></span><div class="tl-body"><strong data-i18n="career.role1">Directeur Général — Audencia Business School</strong><span>Nantes / Paris, France · EQUIS / AACSB / AMBA</span></div></li>
           <li><span class="tl-year serif">2022 — 2023</span><div class="tl-body"><strong data-i18n="career.role2">Directeur Général — De Vinci Higher Education</strong><span>Paris, France</span></div></li>
           <li><span class="tl-year serif">2019 — 2022</span><div class="tl-body"><strong data-i18n="career.role3">Directeur Adjoint — De Vinci Higher Education</strong><span>Paris, France</span></div></li>
-          <li><span class="tl-year serif">2017 — 2024</span><div class="tl-body"><strong data-i18n="career.role4">Doyen — EMLV Paris La Défense</strong><span>Paris, France · AACSB / EFMD / AMBA</span></div></li>
+          <li><span class="tl-year serif">2017 — 2024</span><div class="tl-body"><strong data-i18n="career.role4">Directeur Général — EMLV Business School</strong><span>Paris, France · AACSB / EFMD / AMBA</span></div></li>
           <li><span class="tl-year serif">2014 — 2017</span><div class="tl-body"><strong data-i18n="career.role5">Doyen Associé — ISC Paris</strong><span>Paris, France · AACSB / AMBA</span></div></li>
           <li><span class="tl-year serif">2010 — 2014</span><div class="tl-body"><strong data-i18n="career.role6">Doyen du corps professoral — EM Normandie</strong><span>Caen / Le Havre / Paris / Oxford / Dublin · EQUIS / AACSB / AMBA</span></div></li>
           <li><span class="tl-year serif">2006 — 2010</span><div class="tl-body"><strong data-i18n="career.role7">Directeur des Affaires Académiques — Excelia</strong><span>La Rochelle, France · EQUIS / AACSB / AMBA</span></div></li>
@@ -553,7 +555,8 @@
       <!-- Video Interviews -->
       <div class="block" id="videos">
         <div class="section-head"><p class="kicker" data-i18n="video.kicker">Prises de parole</p><h2 class="serif" data-i18n="video.h2">Interviews vidéo</h2></div>
-        <img src="photo-podcast.jpg" alt="Sébastien Tran en enregistrement podcast" class="section-photo" />
+        <div class="video-layout">
+          <div class="video-main">
         <p class="press-count">9 interviews</p>
         <ul class="video-list">
           <li>
@@ -593,6 +596,11 @@
             <div><a href="https://www.dailymotion.com/video/x90genw" target="_blank" rel="noopener">ChatGPT va-t-il disrupter l'enseignement supérieur ?</a><div class="v-source">XerfiCanal</div></div>
           </li>
         </ul>
+          </div>
+          <div class="video-side">
+            <img src="photo-podcast.jpg" alt="Sébastien Tran en enregistrement podcast" class="section-photo" />
+          </div>
+        </div>
       </div>
 
     </div>
@@ -618,7 +626,7 @@
           <li><span class="edu-year serif">2013</span><div class="edu-detail"><strong data-i18n="edu1.label">HDR — Sciences de Gestion</strong><span data-i18n="edu1.loc">Université de Rouen</span></div></li>
           <li><span class="edu-year serif">2003</span><div class="edu-detail"><strong data-i18n="edu2.label">Doctorat — Organisation Industrielle</strong><span data-i18n="edu2.loc">Université Paris Dauphine (EQUIS)</span></div></li>
           <li><span class="edu-year serif">2000</span><div class="edu-detail"><strong data-i18n="edu3.label">Master — Organisation &amp; Innovation</strong><span data-i18n="edu3.loc">Université Paris Dauphine (EQUIS)</span></div></li>
-          <li><span class="edu-year serif">1999</span><div class="edu-detail"><strong data-i18n="edu4.label">BBA — Management &amp; Finance</strong><span data-i18n="edu4.loc">Université de Reims <em>(major de promotion)</em></span></div></li>
+          <li><span class="edu-year serif">1999</span><div class="edu-detail"><strong data-i18n="edu4.label">MSG — Management &amp; Finance</strong><span data-i18n="edu4.loc">Université de Reims <em>(major de promotion)</em></span></div></li>
         </ul>
       </div>
     </div>
@@ -744,7 +752,7 @@
       "career.role1": "Directeur Général — Audencia Business School",
       "career.role2": "Directeur Général — De Vinci Higher Education",
       "career.role3": "Directeur Adjoint — De Vinci Higher Education",
-      "career.role4": "Doyen — EMLV Paris La Défense",
+      "career.role4": "Directeur Général — EMLV Business School",
       "career.role5": "Doyen Associé — ISC Paris",
       "career.role6": "Doyen du corps professoral — EM Normandie",
       "career.role7": "Directeur des Affaires Académiques — Excelia",
@@ -759,7 +767,7 @@
       "edu1.label": "HDR — Sciences de Gestion", "edu1.loc": "Université de Rouen",
       "edu2.label": "Doctorat — Organisation Industrielle", "edu2.loc": "Université Paris Dauphine (EQUIS)",
       "edu3.label": "Master — Organisation &amp; Innovation", "edu3.loc": "Université Paris Dauphine (EQUIS)",
-      "edu4.label": "BBA — Management &amp; Finance", "edu4.loc": "Université de Reims <em>(major de promotion)</em>",
+      "edu4.label": "MSG — Management &amp; Finance", "edu4.loc": "Université de Reims <em>(major de promotion)</em>",
       "trib.kicker": "Tribunes &amp; presse", "trib.h2": "Prises de parole dans les médias",
       "aud.kicker": "L'institution",
       "aud.p1": "Fondée en 1900, Audencia figure parmi les meilleures écoles de management européennes, régulièrement classée dans le haut du classement mondial du <em>Financial Times</em>. Audencia est accréditée <strong>EQUIS, AACSB et AMBA</strong>, rejoignant ainsi le très petit nombre d'écoles au monde détentrices de cette « triple couronne ». Ses campus sont situés à Nantes, Paris, La Roche-sur-Yon, Barcelone, Shanghai, Shenzhen, Chengdu et São Paulo.",
@@ -786,7 +794,7 @@
       "career.role1": "Dean — Audencia Business School",
       "career.role2": "Director General — De Vinci Higher Education",
       "career.role3": "Deputy Director — De Vinci Higher Education",
-      "career.role4": "Dean — EMLV Paris La Défense",
+      "career.role4": "Director General — EMLV Business School",
       "career.role5": "Associate Dean — ISC Paris",
       "career.role6": "Dean for Faculty — EM Normandie",
       "career.role7": "Director of Academic Affairs — Excelia",
@@ -801,7 +809,7 @@
       "edu1.label": "Accreditation to Supervise Research (HDR)", "edu1.loc": "Management Sciences — University of Rouen",
       "edu2.label": "PhD in Industrial Organization", "edu2.loc": "Paris Dauphine University (EQUIS)",
       "edu3.label": "Master — Organization &amp; Innovation", "edu3.loc": "Paris Dauphine University (EQUIS)",
-      "edu4.label": "BBA — Management &amp; Finance", "edu4.loc": "Reims University <em>(Valedictorian)</em>",
+      "edu4.label": "MSG — Management &amp; Finance", "edu4.loc": "Reims University <em>(Valedictorian)</em>",
       "trib.kicker": "Op-eds &amp; Press", "trib.h2": "Press Commentary &amp; Op-Eds",
       "aud.kicker": "The Institution",
       "aud.p1": "Founded in 1900, Audencia is among the best European business schools, regularly ranked in the world's upper tier by the <em>Financial Times</em>. Audencia is accredited <strong>EQUIS, AACSB and AMBA</strong>, placing it among the very small number of schools worldwide holding this 'triple crown'. Its campuses are located in Nantes, Paris, La Roche-sur-Yon, Barcelona, Shanghai, Shenzhen, Chengdu and São Paulo.",
