@@ -50,14 +50,21 @@
     }
     .nav-logo img { height: 22px; }
     .nav-right { display: flex; align-items: center; gap: 24px; }
-    .nav-links { display: flex; gap: 26px; }
+    .nav-links { display: flex; gap: 16px; }
     .nav-links a {
-      font-size: .72rem; font-weight: 600; letter-spacing: 1.2px;
+      font-size: .66rem; font-weight: 600; letter-spacing: .8px; white-space: nowrap;
       text-transform: uppercase; color: var(--muted);
       transition: color .2s; border-bottom: 1px solid transparent; padding-bottom: 2px;
     }
     .nav-links a:hover { color: var(--accent); border-color: var(--accent); }
-    @media (max-width: 720px) { .nav-links { display: none; } }
+    .nav-logo { white-space: nowrap; }
+    @media (max-width: 1320px) {
+      nav { padding: 0 20px; }
+      .nav-right { gap: 16px; }
+      .nav-links { gap: 11px; }
+      .nav-links a { font-size: .6rem; letter-spacing: .4px; }
+    }
+    @media (max-width: 1100px) { .nav-links { display: none; } }
 
     .lang-switch { display: flex; align-items: center; gap: 4px; }
     .lang-btn {
@@ -190,6 +197,12 @@
       padding-right: 10px; margin-top: 2px; color: var(--navy);
     }
 
+    .about-top { display: grid; grid-template-columns: 1fr 340px; gap: 56px; align-items: start; margin-bottom: 52px; }
+    .about-top .block { margin-bottom: 0; }
+    @media (max-width: 860px) { .about-top { grid-template-columns: 1fr; gap: 40px; } }
+    .about-top .book-card { flex-direction: column; }
+    .about-top .book-card img { width: 120px; }
+
     /* ── TIMELINE ── */
     .timeline { list-style: none; }
     .timeline li {
@@ -215,11 +228,6 @@
       text-transform: uppercase; color: var(--ink);
       border-bottom: 1px solid var(--ink); padding-bottom: 8px; margin-bottom: 16px;
     }
-    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .skill-list li { display: flex; align-items: flex-start; gap: 10px; font-size: .86rem; }
-    .skill-dot { width: 5px; height: 5px; background: var(--accent); flex-shrink: 0; margin-top: 8px; }
-    .skill-list strong { display: block; font-weight: 600; font-size: .86rem; }
-    .skill-list small { color: var(--muted); font-size: .76rem; }
 
     .tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .tag {
@@ -233,10 +241,6 @@
     .edu-detail strong { font-size: .86rem; display: block; font-weight: 600; }
     .edu-detail span { font-size: .78rem; color: var(--muted); }
 
-    .media-grid { display: flex; flex-wrap: wrap; gap: 6px 10px; }
-    .media-badge { font-size: .78rem; color: var(--muted); }
-    .media-badge::after { content: '·'; margin-left: 10px; color: var(--rule); }
-    .media-badge:last-child::after { content: none; }
 
     /* ── PUBLICATIONS ── */
     .pub-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
@@ -364,6 +368,23 @@
       filter: grayscale(.1) contrast(1.02);
     }
 
+    /* ── CONFERENCES ── */
+    .conf-list { list-style: none; }
+    .conf-row {
+      display: grid; grid-template-columns: 110px 1fr; gap: 20px; align-items: baseline;
+      padding: 16px 0; border-bottom: 1px solid var(--rule);
+    }
+    .conf-row:first-child { padding-top: 0; }
+    .conf-row:last-child { border-bottom: none; }
+    @media (max-width: 640px) { .conf-row { grid-template-columns: 1fr; gap: 4px; } }
+    .conf-date { font-size: .76rem; font-weight: 600; color: var(--muted); white-space: nowrap; letter-spacing: .3px; }
+    .conf-main a {
+      font-family: 'Playfair Display', serif; font-size: 1.02rem; font-weight: 600;
+      color: var(--ink); line-height: 1.35; display: block;
+    }
+    .conf-main a:hover { color: var(--accent); }
+    .conf-org { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+
     /* ── CONTACT FORM ── */
     .contact-form { max-width: 640px; display: flex; flex-direction: column; gap: 18px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -406,12 +427,14 @@
   <div class="nav-right">
     <div class="nav-links">
       <a href="#about" data-i18n="nav.about">Portrait</a>
+      <a href="#book" data-i18n="nav.book">Parution</a>
       <a href="#career" data-i18n="nav.career">Parcours</a>
-      <a href="#research" data-i18n="nav.research">Recherche</a>
-      <a href="#publications" data-i18n="nav.publications">Publications</a>
-      <a href="#tribunes" data-i18n="nav.tribunes">Tribunes</a>
-      <a href="#audencia" data-i18n="nav.audencia">Audencia</a>
-      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <a href="#publications" data-i18n="nav.publications">Recherche académique</a>
+      <a href="#conferences" data-i18n="nav.conf">Interventions</a>
+      <a href="#videos" data-i18n="nav.video">Prises de parole</a>
+      <a href="#tribunes" data-i18n="nav.tribunes">Tribunes &amp; presse</a>
+      <a href="#audencia" data-i18n="nav.audencia">L'institution</a>
+      <a href="#contact" data-i18n="nav.contact">Échanger</a>
     </div>
     <div class="lang-switch" role="group" aria-label="Choix de la langue / Language">
       <button class="lang-btn active" data-lang-btn="fr" aria-label="Français" title="Français">🇫🇷</button>
@@ -426,7 +449,7 @@
     <div>
       <p class="hero-eyebrow" data-i18n="hero.eyebrow">Directeur Général · Audencia Business School</p>
       <h1 class="serif">Sébastien<br>Tran</h1>
-      <p class="hero-subtitle" data-i18n="hero.subtitle">Professeur en management de l'innovation, directeur d'Audencia Business School, l'une des meilleures écoles de management en France, 37<sup>ème</sup> meilleure business school du Financial Times 2026.</p>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">Professeur en management de l'innovation, directeur d'Audencia Business School, l'une des meilleures écoles de management en France, 37<sup>ème</sup> meilleure business school du monde au Financial Times 2027 et 34<sup>ème</sup> meilleur programme en management dans le classement international QS 2027.</p>
       <div class="hero-chips">
         <span class="hero-chip">EQUIS · AACSB · AMBA</span>
         <span class="hero-chip">Nantes / Paris, France</span>
@@ -459,11 +482,25 @@
 <!-- ══ MAIN ══ -->
 <main class="container">
 
-  <!-- ABOUT full width -->
-  <div class="block" id="about">
+  <!-- ABOUT + BOOK -->
+  <div class="about-top">
+    <div class="block" id="about">
     <div class="section-head"><p class="kicker" data-i18n="about.kicker">Portrait</p><h2 class="serif" data-i18n="about.h2">Qui est Sébastien Tran</h2></div>
     <p class="about-text" data-i18n="about.p1"><span class="dropcap">S</span>ébastien Tran est Directeur Général d'<strong>Audencia Business School</strong> (fondée en 1900, triple accréditée EQUIS, AACSB et AMBA), l'une des grandes écoles de management européennes, présente à Nantes, Paris, La Roche-sur-Yon, Barcelone, Shenzhen, Shanghai, Chengdu et São Paulo. Il est titulaire d'un <strong>doctorat en Organisation Industrielle</strong> de l'Université Paris Dauphine (EQUIS) et d'une <strong>Habilitation à Diriger des Recherches (HDR)</strong> en sciences de gestion de l'Université de Rouen.</p>
     <p class="about-text" data-i18n="about.p2">Fort de plus de <strong>vingt ans d'expérience</strong> dans la direction d'établissements d'enseignement supérieur, il a publié de nombreux travaux sur le management de l'innovation, la stratégie et les systèmes d'information. Ses recherches actuelles portent sur <em>l'innovation managériale, l'avenir du travail, l'intelligence artificielle et l'entrepreneuriat</em>. Il pilote aujourd'hui le développement stratégique d'Audencia à travers le plan <strong>STOA 2030</strong>.</p>
+    </div>
+    <div class="block" id="book">
+    <div class="section-head"><p class="kicker" data-i18n="book.kicker">Parution</p><h2 class="serif" data-i18n="book.h2">Ouvrage</h2></div>
+    <div class="book-card">
+      <img src="ouvrage_flexibilite.jpg" alt="Explorer la flexibilité des nouveaux modes d'organisation du travail" />
+      <div class="book-meta">
+        <strong>Explorer la flexibilité des nouveaux modes d'organisation du travail</strong>
+        <p class="b-sub">Tran S. &amp; Berkani A. (dir.)</p>
+        <p class="b-sub">Éditions Management et Société (EMS), 2025 — Collection « Questions de société »</p>
+        <a href="https://editions-ems.fr/boutique/explorer-la-flexibilite-des-nouveaux-modes-dorganisation-du-travail/" target="_blank" rel="noopener" class="btn" data-i18n="book.cta">Commander →</a>
+      </div>
+    </div>
+    </div>
   </div>
 
   <div class="grid">
@@ -499,8 +536,22 @@
         </ul>
       </div>
 
+      <!-- Conferences -->
+      <div class="block" id="conferences">
+        <div class="section-head"><p class="kicker" data-i18n="conf.kicker">Interventions</p><h2 class="serif" data-i18n="conf.h2">Conférences</h2></div>
+        <p class="press-count" id="confCount"></p>
+        <ul class="conf-list">
+          <li class="conf-row" data-date="2026-06-30"><span class="conf-date"></span><div class="conf-main"><a href="https://www.linkedin.com/posts/obea_ia-management-rh-activity-7470114845607047168-ymR5/?originalSubdomain=fr" target="_blank" rel="noopener">Matinale de l’IA et Management</a><div class="conf-org"><span data-i18n="conf.by">Organisé par</span> Kanbios et Obea</div></div></li>
+          <li class="conf-row" data-date="2026-06-11"><span class="conf-date"></span><div class="conf-main"><a href="https://fnege.org/80783/" target="_blank" rel="noopener">Les jeunes diplômés des écoles de management seront-ils les gagnants ou les perdants de la révolution de l’IA ?</a><div class="conf-org"><span data-i18n="conf.by">Organisé par</span> FNEGE</div></div></li>
+          <li class="conf-row" data-date="2026-04-28"><span class="conf-date"></span><div class="conf-main"><a href="https://www.groupeonepoint.com/fr/actualites/lentreprise-gen-z-friendly-3/" target="_blank" rel="noopener">L’entreprise Gen Z-Friendly</a><div class="conf-org"><span data-i18n="conf.by">Organisé par</span> Onepoint</div></div></li>
+          <li class="conf-row" data-date="2026-02-16"><span class="conf-date"></span><div class="conf-main"><a href="https://www.groupeonepoint.com/fr/actualites/quelles-strategies-ia-adopter-pour-lecole-daujourdhui-et-de-demain/" target="_blank" rel="noopener">Quelles stratégies IA adopter pour l'Ecole d’aujourd’hui et de demain ?</a><div class="conf-org"><span data-i18n="conf.by">Organisé par</span> Onepoint</div></div></li>
+          <li class="conf-row" data-date="2025-11-28"><span class="conf-date"></span><div class="conf-main"><a href="https://www.forumeconomiquedesbanlieues.com/programme/" target="_blank" rel="noopener">4 outils, 1 ambition : propulser les TPE/PME des quartiers dans l’économie nationale</a><div class="conf-org"><span data-i18n="conf.by">Organisé par</span> Forum Economique des banlieues</div></div></li>
+          <li class="conf-row" data-date="2025-11-07"><span class="conf-date"></span><div class="conf-main"><a href="https://www.linkedin.com/posts/colombus-consulting_prospectiverh-futurdutravail-flexibilité-activity-7405150432341225472-yPL4/?originalSubdomain=fr" target="_blank" rel="noopener">Regards croisés sur la flexibilité</a><div class="conf-org"><span data-i18n="conf.by">Organisé par</span> Colombus Consulting</div></div></li>
+        </ul>
+      </div>
+
       <!-- Video Interviews -->
-      <div class="block">
+      <div class="block" id="videos">
         <div class="section-head"><p class="kicker" data-i18n="video.kicker">Prises de parole</p><h2 class="serif" data-i18n="video.h2">Interviews vidéo</h2></div>
         <img src="photo-podcast.jpg" alt="Sébastien Tran en enregistrement podcast" class="section-photo" />
         <p class="press-count">9 interviews</p>
@@ -544,20 +595,6 @@
         </ul>
       </div>
 
-      <!-- Book -->
-      <div class="block">
-        <div class="section-head"><p class="kicker" data-i18n="book.kicker">Parution</p><h2 class="serif" data-i18n="book.h2">Ouvrage</h2></div>
-        <div class="book-card">
-          <img src="ouvrage_flexibilite.jpg" alt="Explorer la flexibilité des nouveaux modes d'organisation du travail" />
-          <div class="book-meta">
-            <strong>Explorer la flexibilité des nouveaux modes d'organisation du travail</strong>
-            <p class="b-sub">Tran S. &amp; Berkani A. (dir.)</p>
-            <p class="b-sub">Éditions Management et Société (EMS), 2025 — Collection « Questions de société »</p>
-            <a href="https://editions-ems.fr/boutique/explorer-la-flexibilite-des-nouveaux-modes-dorganisation-du-travail/" target="_blank" rel="noopener" class="btn" data-i18n="book.cta">Commander →</a>
-          </div>
-        </div>
-      </div>
-
     </div>
 
     <!-- ── SIDEBAR ── -->
@@ -576,18 +613,6 @@
       </div>
 
       <div class="side-block">
-        <p class="side-title" data-i18n="side.skills.title">Compétences clés</p>
-        <ul class="skill-list">
-          <li><span class="skill-dot"></span><div><strong data-i18n="skill1.title">Direction de programmes</strong><small data-i18n="skill1.desc">Accréditations, développement curriculaire, pédagogies innovantes</small></div></li>
-          <li><span class="skill-dot"></span><div><strong data-i18n="skill2.title">Direction académique</strong><small data-i18n="skill2.desc">Recrutement, gestion des charges, politique d'incitation</small></div></li>
-          <li><span class="skill-dot"></span><div><strong data-i18n="skill3.title">Accréditations &amp; qualité</strong><small data-i18n="skill3.desc">AACSB, EQUIS, EFMD, ISO 9001, labels d'État</small></div></li>
-          <li><span class="skill-dot"></span><div><strong data-i18n="skill4.title">Pilotage de la recherche</strong><small data-i18n="skill4.desc">Organisation de laboratoires, budgets, contrats industriels</small></div></li>
-          <li><span class="skill-dot"></span><div><strong data-i18n="skill5.title">Développement international</strong><small data-i18n="skill5.desc">Recrutement étudiant, doubles diplômes, implantations</small></div></li>
-          <li><span class="skill-dot"></span><div><strong data-i18n="skill6.title">Communication institutionnelle</strong><small data-i18n="skill6.desc">Web TV, salons, relations presse</small></div></li>
-        </ul>
-      </div>
-
-      <div class="side-block">
         <p class="side-title" data-i18n="side.edu.title">Formation</p>
         <ul class="edu-list">
           <li><span class="edu-year serif">2013</span><div class="edu-detail"><strong data-i18n="edu1.label">HDR — Sciences de Gestion</strong><span data-i18n="edu1.loc">Université de Rouen</span></div></li>
@@ -595,22 +620,6 @@
           <li><span class="edu-year serif">2000</span><div class="edu-detail"><strong data-i18n="edu3.label">Master — Organisation &amp; Innovation</strong><span data-i18n="edu3.loc">Université Paris Dauphine (EQUIS)</span></div></li>
           <li><span class="edu-year serif">1999</span><div class="edu-detail"><strong data-i18n="edu4.label">BBA — Management &amp; Finance</strong><span data-i18n="edu4.loc">Université de Reims <em>(major de promotion)</em></span></div></li>
         </ul>
-      </div>
-
-      <div class="side-block">
-        <p class="side-title" data-i18n="side.media.title">Présence média</p>
-        <div class="media-grid">
-          <span class="media-badge">HBR France</span>
-          <span class="media-badge">The Conversation</span>
-          <span class="media-badge">XERFI</span>
-          <span class="media-badge">APEC RH</span>
-          <span class="media-badge">L'Express</span>
-          <span class="media-badge">Le Figaro Étudiant</span>
-          <span class="media-badge">Le Journal du Net</span>
-          <span class="media-badge">Atlantico</span>
-          <span class="media-badge">Newstank</span>
-          <span class="media-badge">Studyrama</span>
-        </div>
       </div>
     </div>
   </div>
@@ -722,10 +731,10 @@
   var I18N = {
     fr: {
       pageTitle: "Sébastien Tran – Directeur Général, Audencia Business School",
-      "nav.about": "Portrait", "nav.career": "Parcours", "nav.research": "Recherche",
-      "nav.publications": "Publications", "nav.tribunes": "Tribunes", "nav.audencia": "Audencia", "nav.contact": "Contact",
+      "nav.about": "Portrait", "nav.book": "Parution", "nav.career": "Parcours", "nav.publications": "Recherche académique",
+      "nav.conf": "Interventions", "nav.video": "Prises de parole", "nav.tribunes": "Tribunes &amp; presse", "nav.audencia": "L'institution", "nav.contact": "Échanger",
       "hero.eyebrow": "Directeur Général · Audencia Business School",
-      "hero.subtitle": "Professeur en management de l'innovation, directeur d'Audencia Business School, l'une des meilleures écoles de management en France, 37<sup>ème</sup> meilleure business school du Financial Times 2026.",
+      "hero.subtitle": "Professeur en management de l'innovation, directeur d'Audencia Business School, l'une des meilleures écoles de management en France, 37<sup>ème</sup> meilleure business school du monde au Financial Times 2027 et 34<sup>ème</sup> meilleur programme en management dans le classement international QS 2027.",
       "stats.tribunes": "Tribunes &amp; médias", "stats.articles": "Articles évalués par les pairs",
       "stats.books": "Ouvrages &amp; chapitres", "stats.comms": "Communications",
       "about.kicker": "Portrait", "about.h2": "Qui est Sébastien Tran",
@@ -740,24 +749,17 @@
       "career.role6": "Doyen du corps professoral — EM Normandie",
       "career.role7": "Directeur des Affaires Académiques — Excelia",
       "pub.kicker": "Recherche académique", "pub.h2": "Publications sélectionnées",
+      "conf.kicker": "Interventions", "conf.h2": "Conférences", "conf.by": "Organisé par",
       "video.kicker": "Prises de parole", "video.h2": "Interviews vidéo",
       "book.kicker": "Parution", "book.h2": "Ouvrage", "book.cta": "Commander →",
       "side.research.title": "Domaines de recherche",
       "tag1": "Management de l'innovation", "tag2": "Systèmes d'information", "tag3": "Stratégie",
       "tag4": "Entrepreneuriat", "tag5": "Avenir du travail", "tag6": "Innovation managériale", "tag7": "Intelligence artificielle",
-      "side.skills.title": "Compétences clés",
-      "skill1.title": "Direction de programmes", "skill1.desc": "Accréditations, développement curriculaire, pédagogies innovantes",
-      "skill2.title": "Direction académique", "skill2.desc": "Recrutement, gestion des charges, politique d'incitation",
-      "skill3.title": "Accréditations &amp; qualité", "skill3.desc": "AACSB, EQUIS, EFMD, ISO 9001, labels d'État",
-      "skill4.title": "Pilotage de la recherche", "skill4.desc": "Organisation de laboratoires, budgets, contrats industriels",
-      "skill5.title": "Développement international", "skill5.desc": "Recrutement étudiant, doubles diplômes, implantations",
-      "skill6.title": "Communication institutionnelle", "skill6.desc": "Web TV, salons, relations presse",
       "side.edu.title": "Formation",
       "edu1.label": "HDR — Sciences de Gestion", "edu1.loc": "Université de Rouen",
       "edu2.label": "Doctorat — Organisation Industrielle", "edu2.loc": "Université Paris Dauphine (EQUIS)",
       "edu3.label": "Master — Organisation &amp; Innovation", "edu3.loc": "Université Paris Dauphine (EQUIS)",
       "edu4.label": "BBA — Management &amp; Finance", "edu4.loc": "Université de Reims <em>(major de promotion)</em>",
-      "side.media.title": "Présence média",
       "trib.kicker": "Tribunes &amp; presse", "trib.h2": "Prises de parole dans les médias",
       "aud.kicker": "L'institution",
       "aud.p1": "Fondée en 1900, Audencia figure parmi les meilleures écoles de management européennes, régulièrement classée dans le haut du classement mondial du <em>Financial Times</em>. Audencia est accréditée <strong>EQUIS, AACSB et AMBA</strong>, rejoignant ainsi le très petit nombre d'écoles au monde détentrices de cette « triple couronne ». Ses campus sont situés à Nantes, Paris, La Roche-sur-Yon, Barcelone, Shanghai, Shenzhen, Chengdu et São Paulo.",
@@ -771,10 +773,10 @@
     },
     en: {
       pageTitle: "Sébastien Tran – Dean, Audencia Business School",
-      "nav.about": "About", "nav.career": "Career", "nav.research": "Research",
-      "nav.publications": "Publications", "nav.tribunes": "Media", "nav.audencia": "Audencia", "nav.contact": "Contact",
+      "nav.about": "About", "nav.book": "New Release", "nav.career": "Career", "nav.publications": "Academic Research",
+      "nav.conf": "Speaking", "nav.video": "Media Appearances", "nav.tribunes": "Op-eds &amp; Press", "nav.audencia": "The Institution", "nav.contact": "Get in touch",
       "hero.eyebrow": "Dean · Audencia Business School",
-      "hero.subtitle": "Professor of Innovation Management, Dean of Audencia Business School, one of the leading management schools in France, ranked 37<sup>th</sup> best business school by the Financial Times 2026.",
+      "hero.subtitle": "Professor of Innovation Management, Dean of Audencia Business School, one of the leading management schools in France, ranked 37<sup>th</sup> best business school in the world by the Financial Times 2027 and 34<sup>th</sup> best management programme in the QS international ranking 2027.",
       "stats.tribunes": "Op-eds &amp; media", "stats.articles": "Peer-reviewed articles",
       "stats.books": "Books &amp; chapters", "stats.comms": "Conference papers",
       "about.kicker": "About", "about.h2": "About Sébastien Tran",
@@ -789,24 +791,17 @@
       "career.role6": "Dean for Faculty — EM Normandie",
       "career.role7": "Director of Academic Affairs — Excelia",
       "pub.kicker": "Academic Research", "pub.h2": "Selected Publications",
+      "conf.kicker": "Speaking", "conf.h2": "Conferences &amp; Talks", "conf.by": "Organised by",
       "video.kicker": "Media Appearances", "video.h2": "Video Interviews",
       "book.kicker": "New Release", "book.h2": "Book", "book.cta": "Order →",
       "side.research.title": "Research Areas",
       "tag1": "Innovation Management", "tag2": "Information Systems", "tag3": "Strategic Management",
       "tag4": "Entrepreneurship", "tag5": "Future of Work", "tag6": "Managerial Innovation", "tag7": "Artificial Intelligence",
-      "side.skills.title": "Key Skills",
-      "skill1.title": "Programme Management", "skill1.desc": "Accreditation standards, curriculum development, innovative teaching methods",
-      "skill2.title": "Faculty Management", "skill2.desc": "Recruitment, workload management, incentive procedures",
-      "skill3.title": "Accreditations &amp; Quality", "skill3.desc": "AACSB, EQUIS, EFMD, ISO 9001, French government labels",
-      "skill4.title": "Research Management", "skill4.desc": "Research lab organisation, budget management, industry contracts",
-      "skill5.title": "International Development", "skill5.desc": "Student recruitment, double degrees, campus delocalization",
-      "skill6.title": "Institutional Communication", "skill6.desc": "Web TV, fairs, press interviews",
       "side.edu.title": "Education",
       "edu1.label": "Accreditation to Supervise Research (HDR)", "edu1.loc": "Management Sciences — University of Rouen",
       "edu2.label": "PhD in Industrial Organization", "edu2.loc": "Paris Dauphine University (EQUIS)",
       "edu3.label": "Master — Organization &amp; Innovation", "edu3.loc": "Paris Dauphine University (EQUIS)",
       "edu4.label": "BBA — Management &amp; Finance", "edu4.loc": "Reims University <em>(Valedictorian)</em>",
-      "side.media.title": "Media Presence",
       "trib.kicker": "Op-eds &amp; Press", "trib.h2": "Press Commentary &amp; Op-Eds",
       "aud.kicker": "The Institution",
       "aud.p1": "Founded in 1900, Audencia is among the best European business schools, regularly ranked in the world's upper tier by the <em>Financial Times</em>. Audencia is accredited <strong>EQUIS, AACSB and AMBA</strong>, placing it among the very small number of schools worldwide holding this 'triple crown'. Its campuses are located in Nantes, Paris, La Roche-sur-Yon, Barcelona, Shanghai, Shenzhen, Chengdu and São Paulo.",
@@ -841,6 +836,19 @@
       var d = new Date(iso + 'T00:00:00');
       var fmt = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-GB', { year: 'numeric', month: 'short' });
       return fmt.format(d);
+    }
+
+    function renderConfs(lang) {
+      var confRows = document.querySelectorAll('.conf-row');
+      var fmt = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      confRows.forEach(function (row) {
+        var d = new Date(row.getAttribute('data-date') + 'T00:00:00');
+        row.querySelector('.conf-date').textContent = fmt.format(d);
+      });
+      var n = confRows.length;
+      document.getElementById('confCount').textContent = lang === 'fr'
+        ? (n + (n === 1 ? ' conférence' : ' conférences'))
+        : (n + (n === 1 ? ' talk' : ' talks'));
     }
 
     function renderDatesAndCats(lang) {
@@ -889,6 +897,7 @@
         if (dict[key] !== undefined) el.innerHTML = dict[key];
       });
       renderDatesAndCats(lang);
+      renderConfs(lang);
       applyFilter(activeFilter);
       document.querySelectorAll('.lang-btn').forEach(function (btn) {
         btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
