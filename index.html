@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sébastien Tran – Dean of Audencia Business School</title>
+  <title>Sébastien Tran – Directeur Général, Audencia Business School</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -15,322 +15,352 @@
       --navy:    #0b1f4b;
       --blue:    #1e3a8a;
       --mid:     #2563eb;
-      --accent:  #d97706;
-      --light:   #f0f4ff;
-      --white:   #ffffff;
-      --gray:    #f8fafc;
-      --muted:   #64748b;
-      --border:  #e2e8f0;
-      --text:    #1e293b;
+      --accent:  #b5490a;
+      --cream:   #faf7f1;
+      --paper:   #fffdfa;
+      --ink:     #181511;
+      --muted:   #78716a;
+      --rule:    #e4ddd0;
+      --rule-dark: rgba(255,255,255,.18);
     }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: var(--gray);
-      color: var(--text);
+      background: var(--cream);
+      color: var(--ink);
       line-height: 1.7;
     }
     a { color: inherit; text-decoration: none; }
+    .serif { font-family: 'Playfair Display', serif; }
 
-    /* ── NAV ── */
+    /* ── MASTHEAD ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(11,31,75,.96);
-      backdrop-filter: blur(12px);
+      background: var(--cream);
+      border-bottom: 2px solid var(--ink);
       padding: 0 32px;
       display: flex; align-items: center; justify-content: space-between;
-      height: 56px;
-      box-shadow: 0 1px 0 rgba(255,255,255,.08);
+      height: 60px;
     }
     .nav-logo {
-      display: flex; align-items: center; gap: 12px;
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .5px;
+      color: var(--ink);
     }
-    .nav-logo img { height: 30px; filter: brightness(0) invert(1); }
-    .nav-links { display: flex; gap: 28px; }
+    .nav-logo img { height: 22px; }
+    .nav-links { display: flex; gap: 26px; }
     .nav-links a {
-      font-size: .8rem; font-weight: 500; letter-spacing: .6px;
-      text-transform: uppercase; color: rgba(255,255,255,.7);
-      transition: color .2s;
+      font-size: .72rem; font-weight: 600; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--muted);
+      transition: color .2s; border-bottom: 1px solid transparent; padding-bottom: 2px;
     }
-    .nav-links a:hover { color: #fff; }
-    @media (max-width: 700px) { .nav-links { display: none; } }
+    .nav-links a:hover { color: var(--accent); border-color: var(--accent); }
+    @media (max-width: 720px) { .nav-links { display: none; } }
 
-    /* ── HERO ── */
+    /* ── HERO (masthead banner) ── */
     .hero {
-      background: linear-gradient(135deg, var(--navy) 0%, #1e3a8a 60%, #1d4ed8 100%);
+      background: linear-gradient(160deg, var(--navy) 0%, #0f2a5e 55%, #15306b 100%);
       color: #fff;
-      padding: 80px 32px 64px;
+      padding: 72px 32px 0;
       position: relative;
       overflow: hidden;
     }
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse at 80% 20%, rgba(217,119,6,.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 10% 80%, rgba(37,99,235,.25) 0%, transparent 50%);
+      background: radial-gradient(ellipse at 85% 10%, rgba(181,73,10,.22) 0%, transparent 55%);
     }
     .hero-inner {
       position: relative;
-      max-width: 1060px; margin: 0 auto;
-      display: grid; grid-template-columns: auto 1fr;
-      gap: 48px; align-items: center;
+      max-width: 1140px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 300px;
+      gap: 40px; align-items: end;
+      padding-bottom: 56px;
     }
-    @media (max-width: 720px) {
-      .hero-inner { grid-template-columns: 1fr; text-align: center; }
-      .hero-right { align-items: center; }
+    @media (max-width: 760px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-wrap { order: -1; width: 160px; }
     }
-    .hero-photo {
-      width: 160px; height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid rgba(255,255,255,.25);
-      box-shadow: 0 0 0 8px rgba(255,255,255,.08), 0 24px 64px rgba(0,0,0,.4);
-      flex-shrink: 0;
-    }
-    .hero-right { display: flex; flex-direction: column; gap: 6px; }
     .hero-eyebrow {
-      font-size: .75rem; font-weight: 600; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 4px;
+      font-size: .78rem; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--accent);
+      display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
     }
+    .hero-eyebrow::after { content:''; flex:1; max-width: 120px; height: 1px; background: rgba(255,255,255,.3); }
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      line-height: 1.1; font-weight: 700;
-      margin-bottom: 8px;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: .98; font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
     }
     .hero-subtitle {
-      font-size: 1rem; font-weight: 400;
-      color: rgba(255,255,255,.8); margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 500;
+      color: rgba(255,255,255,.82); margin-bottom: 26px;
+      max-width: 48ch;
     }
     .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
     .hero-chip {
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.2);
+      border: 1px solid rgba(255,255,255,.35);
       border-radius: 999px; padding: 4px 14px;
-      font-size: .78rem; font-weight: 500;
+      font-size: .72rem; font-weight: 600; letter-spacing: .4px;
     }
-    .contact-bar { display: flex; flex-wrap: wrap; gap: 10px; }
-    .contact-bar a {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 8px; padding: 7px 14px;
-      font-size: .8rem; font-weight: 500;
-      transition: background .2s, transform .15s;
-    }
-    .contact-bar a:hover { background: rgba(255,255,255,.2); transform: translateY(-1px); }
-    .contact-bar svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .contact-bar { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: .82rem; }
+    .contact-bar a { color: rgba(255,255,255,.75); border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: 1px; transition: color .2s, border-color .2s; }
+    .contact-bar a:hover { color: #fff; border-color: #fff; }
 
-    /* ── STATS BANNER ── */
+    .hero-photo-wrap { position: relative; }
+    .hero-photo {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.3);
+      filter: grayscale(.15) contrast(1.05);
+    }
+    .hero-photo-caption {
+      font-size: .68rem; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255,255,255,.5); margin-top: 8px; text-align: right;
+    }
+
+    /* ── BY THE NUMBERS ── */
     .stats-banner {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 24px 32px;
+      background: var(--navy);
+      border-top: 1px solid var(--rule-dark);
     }
     .stats-inner {
-      max-width: 1060px; margin: 0 auto;
+      max-width: 1140px; margin: 0 auto;
       display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 16px; text-align: center;
+      padding: 0 32px;
     }
     @media (max-width: 600px) { .stats-inner { grid-template-columns: repeat(2,1fr); } }
+    .stat-item {
+      padding: 22px 24px; text-align: center;
+      border-left: 1px solid var(--rule-dark);
+    }
+    .stats-inner .stat-item:first-child { border-left: none; }
+    @media (max-width: 600px) { .stats-inner .stat-item:nth-child(2n+1) { border-left: none; } }
     .stat-num {
-      font-size: 2.4rem; font-weight: 800;
-      color: var(--blue); line-height: 1;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 800; color: #fff; line-height: 1;
     }
     .stat-lbl {
-      font-size: .72rem; font-weight: 600; letter-spacing: .8px;
-      text-transform: uppercase; color: var(--muted); margin-top: 4px;
+      font-size: .68rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: rgba(255,255,255,.55); margin-top: 6px;
     }
 
     /* ── LAYOUT ── */
-    .container { max-width: 1060px; margin: 0 auto; padding: 48px 24px; }
-    .grid { display: grid; grid-template-columns: 320px 1fr; gap: 28px; align-items: start; }
-    @media (max-width: 840px) { .grid { grid-template-columns: 1fr; } }
+    .container { max-width: 1140px; margin: 0 auto; padding: 64px 24px; }
+    .grid { display: grid; grid-template-columns: 1fr 320px; gap: 64px; align-items: start; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; gap: 48px; } }
 
-    /* ── CARDS ── */
-    .card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 28px 32px;
-      box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
-      border: 1px solid var(--border);
-      margin-bottom: 20px;
+    /* ── SECTION KICKERS ── */
+    .kicker {
+      font-size: .74rem; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 10px;
     }
-    .card:last-child { margin-bottom: 0; }
-
-    /* ── SECTION TITLES ── */
-    .section-title {
-      font-size: .7rem; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--mid);
-      margin-bottom: 20px;
-      display: flex; align-items: center; gap: 10px;
+    .section-head { margin-bottom: 28px; padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
+    .section-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem; font-weight: 700; color: var(--ink);
     }
-    .section-title::after {
-      content: ''; flex: 1; height: 1px;
-      background: linear-gradient(to right, var(--border), transparent);
-    }
+    .block { margin-bottom: 52px; }
+    .block:last-child { margin-bottom: 0; }
 
     /* ── ABOUT ── */
-    .about-text { font-size: .95rem; color: #334155; line-height: 1.8; }
-    .about-text + .about-text { margin-top: 14px; }
+    .about-text { font-size: 1.02rem; color: var(--ink); line-height: 1.85; max-width: 72ch; }
+    .about-text + .about-text { margin-top: 16px; }
+    .about-text .dropcap {
+      font-family: 'Playfair Display', serif;
+      float: left; font-size: 4.6rem; font-weight: 800; line-height: .78;
+      padding-right: 10px; margin-top: 2px; color: var(--navy);
+    }
 
     /* ── TIMELINE ── */
-    .timeline { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .timeline { list-style: none; }
     .timeline li {
-      display: grid; grid-template-columns: 100px 1fr;
-      gap: 16px; padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      position: relative;
+      display: grid; grid-template-columns: 108px 1fr;
+      gap: 20px; padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
     }
+    .timeline li:first-child { padding-top: 0; }
     .timeline li:last-child { border-bottom: none; }
     .tl-year {
-      font-size: .75rem; font-weight: 700;
-      color: var(--accent); padding-top: 3px;
-      white-space: nowrap;
+      font-family: 'Playfair Display', serif;
+      font-size: .88rem; font-weight: 700;
+      color: var(--accent); padding-top: 3px; white-space: nowrap;
     }
-    .tl-body strong { font-size: .92rem; display: block; font-weight: 600; }
-    .tl-body span { font-size: .8rem; color: var(--muted); margin-top: 2px; display: block; }
+    .tl-body strong { font-size: .98rem; display: block; font-weight: 600; }
+    .tl-body span { font-size: .82rem; color: var(--muted); margin-top: 3px; display: block; }
 
-    /* ── SKILLS ── */
-    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .skill-list li { display: flex; align-items: flex-start; gap: 12px; font-size: .88rem; }
-    .skill-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent); flex-shrink: 0; margin-top: 8px;
+    /* ── SIDEBAR LISTS ── */
+    .side-block { margin-bottom: 44px; }
+    .side-block:last-child { margin-bottom: 0; }
+    .side-title {
+      font-size: .74rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--ink);
+      border-bottom: 1px solid var(--ink); padding-bottom: 8px; margin-bottom: 16px;
     }
-    .skill-list strong { display: block; font-weight: 600; font-size: .88rem; }
-    .skill-list small { color: var(--muted); font-size: .78rem; }
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .skill-list li { display: flex; align-items: flex-start; gap: 10px; font-size: .86rem; }
+    .skill-dot { width: 5px; height: 5px; background: var(--accent); flex-shrink: 0; margin-top: 8px; }
+    .skill-list strong { display: block; font-weight: 600; font-size: .86rem; }
+    .skill-list small { color: var(--muted); font-size: .76rem; }
 
-    /* ── TAGS ── */
     .tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .tag {
-      background: var(--light);
-      border: 1px solid #c7d7fd;
-      border-radius: 999px; padding: 5px 16px;
-      font-size: .78rem; font-weight: 600; color: var(--blue);
-      transition: background .15s;
+      border: 1px solid var(--ink); border-radius: 0;
+      padding: 4px 12px; font-size: .74rem; font-weight: 600; color: var(--ink);
     }
-    .tag:hover { background: #dbeafe; }
 
-    /* ── EDU ── */
-    .edu-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-    .edu-list li { display: flex; gap: 16px; }
-    .edu-year { min-width: 38px; font-size: .75rem; font-weight: 700; color: var(--accent); padding-top: 3px; }
-    .edu-detail strong { font-size: .9rem; display: block; font-weight: 600; }
-    .edu-detail span { font-size: .82rem; color: var(--muted); }
+    .edu-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .edu-list li { display: flex; gap: 14px; }
+    .edu-year { font-family: 'Playfair Display', serif; min-width: 38px; font-size: .78rem; font-weight: 700; color: var(--accent); padding-top: 2px; }
+    .edu-detail strong { font-size: .86rem; display: block; font-weight: 600; }
+    .edu-detail span { font-size: .78rem; color: var(--muted); }
 
-    /* ── PUB LIST ── */
-    .pub-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .media-grid { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+    .media-badge { font-size: .78rem; color: var(--muted); }
+    .media-badge::after { content: '·'; margin-left: 10px; color: var(--rule); }
+    .media-badge:last-child::after { content: none; }
+
+    /* ── PUBLICATIONS ── */
+    .pub-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
     .pub-list li {
-      font-size: .85rem; padding: 12px 14px;
-      border-left: 3px solid var(--accent);
-      background: var(--gray); border-radius: 0 8px 8px 0;
-      line-height: 1.6;
+      font-size: .9rem; padding: 0 0 0 16px;
+      border-left: 2px solid var(--accent);
+      line-height: 1.65;
     }
-    .pub-list li em { color: var(--muted); }
-
-    /* ── MEDIA BADGES ── */
-    .media-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-    .media-badge {
-      background: var(--light); color: var(--blue);
-      border: 1px solid #c7d7fd;
-      border-radius: 8px; padding: 5px 12px;
-      font-size: .78rem; font-weight: 600;
-      transition: background .15s;
-    }
-    .media-badge:hover { background: #dbeafe; }
-
-    /* ── TRIBUNE LIST ── */
-    .tribune-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-    .tribune-list li {
-      padding: 14px 16px;
-      background: var(--gray);
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      transition: box-shadow .2s, transform .15s;
-    }
-    .tribune-list li:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); transform: translateY(-1px); }
-    .tribune-list a { color: var(--blue); font-weight: 600; font-size: .9rem; line-height: 1.4; display: block; margin-bottom: 4px; }
-    .tribune-list a:hover { color: var(--mid); }
-    .tribune-list .t-source { font-size: .78rem; color: var(--muted); }
+    .pub-list li em { color: var(--muted); font-style: italic; }
 
     /* ── VIDEO LIST ── */
-    .video-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .video-list { list-style: none; display: flex; flex-direction: column; }
     .video-list li {
-      display: flex; align-items: center; gap: 12px;
-      padding: 12px 14px;
-      background: var(--gray); border-radius: 10px;
-      border: 1px solid var(--border);
-      transition: box-shadow .2s;
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
     }
-    .video-list li:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+    .video-list li:last-child { border-bottom: none; }
     .play-btn {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: #FF0000; display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; box-shadow: 0 2px 8px rgba(255,0,0,.3);
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--ink); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
     }
-    .play-btn svg { width: 14px; height: 14px; fill: white; margin-left: 2px; }
-    .video-list a { color: var(--blue); font-weight: 600; font-size: .88rem; display: block; }
+    .play-btn svg { width: 13px; height: 13px; fill: var(--cream); margin-left: 2px; }
+    .video-list a { color: var(--ink); font-weight: 600; font-size: .9rem; display: block; }
+    .video-list a:hover { color: var(--accent); }
     .video-list .v-source { font-size: .76rem; color: var(--muted); margin-top: 2px; }
 
-    /* ── OUVRAGE ── */
-    .book-card { display: flex; gap: 20px; align-items: flex-start; }
-    .book-card img { width: 100px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.18); flex-shrink: 0; }
-    .book-meta strong { font-size: .95rem; font-weight: 700; display: block; line-height: 1.4; margin-bottom: 6px; }
-    .book-meta .b-sub { font-size: .82rem; color: var(--muted); margin-bottom: 4px; }
+    /* ── BOOK ── */
+    .book-card { display: flex; gap: 22px; align-items: flex-start; }
+    .book-card img { width: 96px; box-shadow: 0 10px 28px rgba(0,0,0,.18); flex-shrink: 0; }
+    .book-meta strong { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; display: block; line-height: 1.4; margin-bottom: 8px; }
+    .book-meta .b-sub { font-size: .82rem; color: var(--muted); margin-bottom: 3px; }
     .btn {
       display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 12px; font-size: .8rem; font-weight: 600;
-      background: var(--accent); color: #fff;
-      padding: 7px 16px; border-radius: 8px;
-      transition: background .2s, transform .15s;
+      margin-top: 12px; font-size: .78rem; font-weight: 600;
+      color: var(--accent); border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
     }
-    .btn:hover { background: #b45309; transform: translateY(-1px); }
+    .btn:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* ── TRIBUNES — PRESS INDEX ── */
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    .filter-chip {
+      font-size: .72rem; font-weight: 600; letter-spacing: .6px;
+      text-transform: uppercase;
+      border: 1px solid var(--ink); border-radius: 999px;
+      padding: 6px 16px; background: transparent; color: var(--ink);
+      cursor: pointer; transition: background .15s, color .15s;
+    }
+    .filter-chip:hover { background: rgba(24,21,17,.06); }
+    .filter-chip.active { background: var(--ink); color: var(--cream); }
+
+    .press-count { font-size: .8rem; color: var(--muted); margin-bottom: 20px; }
+
+    .tribune-list { list-style: none; }
+    .tribune-row {
+      display: grid; grid-template-columns: 96px 1fr auto;
+      gap: 20px; align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .tribune-row:first-child { padding-top: 0; }
+    @media (max-width: 640px) {
+      .tribune-row { grid-template-columns: 1fr; gap: 4px; }
+      .tribune-date { order: 3; }
+      .tribune-cat { order: 2; }
+    }
+    .tribune-date {
+      font-size: .76rem; font-weight: 600; color: var(--muted);
+      white-space: nowrap; letter-spacing: .3px;
+    }
+    .tribune-main a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.02rem; font-weight: 600; color: var(--ink);
+      line-height: 1.35; display: block;
+    }
+    .tribune-main a:hover { color: var(--accent); }
+    .tribune-main span.no-link {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.02rem; font-weight: 600; color: var(--ink);
+      line-height: 1.35; display: block;
+    }
+    .tribune-media {
+      font-size: .78rem; color: var(--muted); margin-top: 4px;
+    }
+    .tribune-cat {
+      font-size: .68rem; font-weight: 700; letter-spacing: .6px;
+      text-transform: uppercase; color: var(--accent);
+      white-space: nowrap; justify-self: end;
+    }
 
     /* ── ABOUT AUDENCIA ── */
     .about-audencia {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
-      color: #fff; border-radius: 16px; padding: 40px;
-      margin-top: 28px;
+      background: var(--navy);
+      color: #fff; padding: 52px 44px;
+      margin-top: 8px;
     }
-    .about-audencia .section-title { color: var(--accent); }
-    .about-audencia .section-title::after { background: linear-gradient(to right, rgba(255,255,255,.2), transparent); }
-    .about-audencia p { font-size: .93rem; color: rgba(255,255,255,.85); line-height: 1.8; }
-    .about-audencia p + p { margin-top: 14px; }
+    .about-audencia .kicker { color: var(--accent); }
+    .about-audencia .section-head { border-bottom: 1px solid var(--rule-dark); }
+    .about-audencia .section-head h2 { color: #fff; }
+    .about-audencia p { font-size: .96rem; color: rgba(255,255,255,.82); line-height: 1.85; max-width: 72ch; }
+    .about-audencia p + p { margin-top: 16px; }
     .btn-outline {
       display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 20px; font-size: .82rem; font-weight: 600;
-      border: 2px solid rgba(255,255,255,.4); color: #fff;
-      padding: 8px 20px; border-radius: 8px;
-      transition: background .2s, border-color .2s;
+      margin-top: 22px; font-size: .8rem; font-weight: 600;
+      color: #fff; border-bottom: 1px solid rgba(255,255,255,.5);
+      padding-bottom: 2px;
     }
-    .btn-outline:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.7); }
+    .btn-outline:hover { border-color: #fff; color: var(--accent); }
 
     /* ── FOOTER ── */
     footer {
-      text-align: center; padding: 32px 24px;
+      text-align: center; padding: 36px 24px;
       font-size: .8rem; color: var(--muted);
-      border-top: 1px solid var(--border);
-      background: var(--white);
+      border-top: 2px solid var(--ink);
+      background: var(--cream);
     }
-    footer a { color: var(--mid); }
-    footer a:hover { text-decoration: underline; }
+    footer a { color: var(--ink); border-bottom: 1px solid var(--rule); }
+    footer a:hover { color: var(--accent); border-color: var(--accent); }
   </style>
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
+<!-- ══ MASTHEAD ══ -->
 <nav>
   <a class="nav-logo" href="https://www.audencia.com" target="_blank" rel="noopener">
-    <img src="audencia-logo.svg" alt="Audencia">
+    <img src="audencia-logo.svg" alt="Audencia" style="height: 20px;">
+    Sébastien Tran
   </a>
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#career">Career</a>
-    <a href="#research">Research</a>
+    <a href="#about">Portrait</a>
+    <a href="#career">Parcours</a>
+    <a href="#research">Recherche</a>
     <a href="#publications">Publications</a>
-    <a href="#media">Media</a>
+    <a href="#tribunes">Tribunes</a>
     <a href="#audencia">Audencia</a>
   </div>
 </nav>
@@ -338,48 +368,36 @@
 <!-- ══ HERO ══ -->
 <header class="hero">
   <div class="hero-inner">
-    <img src="photo.jpg" alt="Sébastien Tran" class="hero-photo" />
-    <div class="hero-right">
-      <p class="hero-eyebrow">Dean · Directeur Général</p>
-      <h1>Sébastien Tran</h1>
-      <p class="hero-subtitle">Audencia Business School · Nantes / Paris, France</p>
+    <div>
+      <p class="hero-eyebrow">Directeur Général · Audencia Business School</p>
+      <h1 class="serif">Sébastien<br>Tran</h1>
+      <p class="hero-subtitle">Enseignant-chercheur en sciences de gestion, pilote du plan stratégique STOA 2030 à la tête d'une des grandes écoles de management européennes.</p>
       <div class="hero-chips">
         <span class="hero-chip">EQUIS · AACSB · AMBA</span>
-        <span class="hero-chip">&#127759; France</span>
+        <span class="hero-chip">Nantes / Paris, France</span>
       </div>
       <div class="contact-bar">
-        <a href="mailto:stran@audencia.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-          stran@audencia.com
-        </a>
-        <a href="mailto:tran.sebastien@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-          tran.sebastien@gmail.com
-        </a>
-        <a href="tel:+33699431803">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 5.99 5.99l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-          +33 6 99 43 18 03
-        </a>
-        <a href="https://www.linkedin.com/in/sebastien-tran-415b355/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://x.com/sebtran" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          X
-        </a>
+        <a href="mailto:stran@audencia.com">stran@audencia.com</a>
+        <a href="mailto:tran.sebastien@gmail.com">tran.sebastien@gmail.com</a>
+        <a href="tel:+33699431803">+33 6 99 43 18 03</a>
+        <a href="https://www.linkedin.com/in/sebastien-tran-415b355/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/sebtran" target="_blank" rel="noopener">X</a>
       </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img src="photo.jpg" alt="Sébastien Tran" class="hero-photo" />
+      <p class="hero-photo-caption">Sébastien Tran, 2026</p>
     </div>
   </div>
 </header>
 
-<!-- ══ STATS BANNER ══ -->
+<!-- ══ BY THE NUMBERS ══ -->
 <div class="stats-banner">
   <div class="stats-inner">
-    <div class="stat-item"><div class="stat-num">18</div><div class="stat-lbl">Peer-reviewed articles</div></div>
-    <div class="stat-item"><div class="stat-num">8</div><div class="stat-lbl">Books &amp; chapters</div></div>
-    <div class="stat-item"><div class="stat-num">51</div><div class="stat-lbl">Conference papers</div></div>
-    <div class="stat-item"><div class="stat-num">7</div><div class="stat-lbl">Research contracts</div></div>
+    <div class="stat-item"><div class="stat-num serif">30</div><div class="stat-lbl">Tribunes &amp; médias</div></div>
+    <div class="stat-item"><div class="stat-num serif">18</div><div class="stat-lbl">Articles évalués par les pairs</div></div>
+    <div class="stat-item"><div class="stat-num serif">8</div><div class="stat-lbl">Ouvrages &amp; chapitres</div></div>
+    <div class="stat-item"><div class="stat-num serif">51</div><div class="stat-lbl">Communications</div></div>
   </div>
 </div>
 
@@ -387,170 +405,34 @@
 <main class="container">
 
   <!-- ABOUT full width -->
-  <div class="card" id="about">
-    <h2 class="section-title">About</h2>
-    <p class="about-text">
-      Sébastien Tran is the Dean of <strong>Audencia Business School</strong> (founded 1900, triple-crown accredited: EQUIS, AACSB &amp; AMBA), one of Europe's leading business schools with campuses in Nantes, Paris, La Roche-sur-Yon, Barcelone, Shenzhen, Shanghai, Chengdu and São Paulo. He holds a <strong>PhD in Industrial Organization</strong> from Paris Dauphine University (EQUIS accredited) and a <strong>Habilitation to Supervise Research (HDR)</strong> in Management Sciences from the University of Rouen.
-    </p>
-    <p class="about-text">
-      With <strong>more than 20 years of experience</strong> in higher education leadership across multiple institutions, he has published extensively on innovation management, strategic management, and Information Systems. His current research focuses on <em>managerial innovation, the future of work, Artificial Intelligence and Entrepreneurship</em>.
-    </p>
+  <div class="block" id="about">
+    <div class="section-head"><p class="kicker">Portrait</p><h2 class="serif">Qui est Sébastien Tran</h2></div>
+    <p class="about-text"><span class="dropcap">S</span>ébastien Tran est Directeur Général d'<strong>Audencia Business School</strong> (fondée en 1900, triple accréditée EQUIS, AACSB et AMBA), l'une des grandes écoles de management européennes, présente à Nantes, Paris, La Roche-sur-Yon, Barcelone, Shenzhen, Shanghai, Chengdu et São Paulo. Il est titulaire d'un <strong>doctorat en Organisation Industrielle</strong> de l'Université Paris Dauphine (EQUIS) et d'une <strong>Habilitation à Diriger des Recherches (HDR)</strong> en sciences de gestion de l'Université de Rouen.</p>
+    <p class="about-text">Fort de plus de <strong>vingt ans d'expérience</strong> dans la direction d'établissements d'enseignement supérieur, il a publié de nombreux travaux sur le management de l'innovation, la stratégie et les systèmes d'information. Ses recherches actuelles portent sur <em>l'innovation managériale, l'avenir du travail, l'intelligence artificielle et l'entrepreneuriat</em>. Il pilote aujourd'hui le développement stratégique d'Audencia à travers le plan <strong>STOA 2030</strong>.</p>
   </div>
 
   <div class="grid">
 
-    <!-- ── LEFT COLUMN ── -->
-    <div>
-
-      <!-- Interviews vidéo -->
-      <div class="card">
-        <h2 class="section-title">Video Interviews</h2>
-        <ul class="video-list">
-          <li>
-            <a href="https://www.youtube.com/watch?v=XrqANN8uyBs" target="_blank" rel="noopener" aria-label="YouTube">
-              <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            </a>
-            <div>
-              <a href="https://www.youtube.com/watch?v=XrqANN8uyBs" target="_blank" rel="noopener">STOA 2030 : Sébastien Tran présente le nouveau plan stratégique d'Audencia</a>
-              <div class="v-source">DG sur Écoute — Chaîne Thotis</div>
-            </div>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=AM-hI5M1DP0" target="_blank" rel="noopener" aria-label="YouTube">
-              <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            </a>
-            <div>
-              <a href="https://www.youtube.com/watch?v=AM-hI5M1DP0" target="_blank" rel="noopener">Tout savoir sur Audencia, interview de Sébastien Tran</a>
-              <div class="v-source">Chaîne Studyrama</div>
-            </div>
-          </li>
-          <li>
-            <a href="https://www.dailymotion.com/video/x90genw" target="_blank" rel="noopener" aria-label="Dailymotion">
-              <div class="play-btn" style="background:#0066DC;"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            </a>
-            <div>
-              <a href="https://www.dailymotion.com/video/x90genw" target="_blank" rel="noopener">ChatGPT va-t-il disrupter l'enseignement supérieur ?</a>
-              <div class="v-source">XerfiCanal</div>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Ouvrage -->
-      <div class="card">
-        <h2 class="section-title">Book</h2>
-        <div class="book-card">
-          <img src="ouvrage_flexibilite.jpg" alt="Explorer la flexibilité des nouveaux modes d'organisation du travail" />
-          <div class="book-meta">
-            <strong>Explorer la flexibilité des nouveaux modes d'organisation du travail</strong>
-            <p class="b-sub">Tran S. &amp; Berkani A. (dir.)</p>
-            <p class="b-sub">Éditions Management et Société (EMS), 2025</p>
-            <p class="b-sub">Collection « Questions de société »</p>
-            <a href="https://editions-ems.fr/boutique/explorer-la-flexibilite-des-nouveaux-modes-dorganisation-du-travail/" target="_blank" rel="noopener" class="btn">Commander →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Key Skills -->
-      <div class="card">
-        <h2 class="section-title">Key Skills</h2>
-        <ul class="skill-list">
-          <li><span class="skill-dot"></span><div><strong>Programme Management</strong><small>Accreditation standards, curriculum development, innovative teaching methods</small></div></li>
-          <li><span class="skill-dot"></span><div><strong>Faculty Management</strong><small>Recruitment, workload management, incentive procedures</small></div></li>
-          <li><span class="skill-dot"></span><div><strong>Accreditations &amp; Quality</strong><small>AACSB, EQUIS, EFMD, ISO 9001, French government labels</small></div></li>
-          <li><span class="skill-dot"></span><div><strong>Research Management</strong><small>Research lab organisation, budget management, industry contracts</small></div></li>
-          <li><span class="skill-dot"></span><div><strong>International Development</strong><small>Student recruitment, double degrees, campus delocalization</small></div></li>
-          <li><span class="skill-dot"></span><div><strong>Institutional Communication</strong><small>Web TV, fairs, press interviews</small></div></li>
-        </ul>
-      </div>
-
-      <!-- Research Areas -->
-      <div class="card" id="research">
-        <h2 class="section-title">Research Areas</h2>
-        <div class="tags">
-          <span class="tag">Innovation Management</span>
-          <span class="tag">Information Systems</span>
-          <span class="tag">Strategic Management</span>
-          <span class="tag">Entrepreneurship</span>
-          <span class="tag">Future of Work</span>
-          <span class="tag">Managerial Innovation</span>
-          <span class="tag">Artificial Intelligence</span>
-        </div>
-      </div>
-
-      <!-- Education -->
-      <div class="card">
-        <h2 class="section-title">Education</h2>
-        <ul class="edu-list">
-          <li><span class="edu-year">2013</span><div class="edu-detail"><strong>Accreditation to Supervise Research (HDR)</strong><span>Management Sciences — University of Rouen</span></div></li>
-          <li><span class="edu-year">2003</span><div class="edu-detail"><strong>PhD in Industrial Organization</strong><span>Paris Dauphine University (EQUIS)</span></div></li>
-          <li><span class="edu-year">2000</span><div class="edu-detail"><strong>Master — Organization &amp; Innovation</strong><span>Paris Dauphine University (EQUIS)</span></div></li>
-          <li><span class="edu-year">1999</span><div class="edu-detail"><strong>BBA — Management &amp; Finance</strong><span>Reims University <em>(Valedictorian)</em></span></div></li>
-        </ul>
-      </div>
-
-      <!-- Media -->
-      <div class="card" id="media">
-        <h2 class="section-title">Media &amp; Press</h2>
-        <p style="font-size:.8rem;color:var(--muted);margin-bottom:14px;">30+ contributions in major outlets</p>
-        <div class="media-grid">
-          <span class="media-badge">HBR France</span>
-          <span class="media-badge">The Conversation</span>
-          <span class="media-badge">XERFI</span>
-          <span class="media-badge">APEC RH</span>
-          <span class="media-badge">L'Expansion Management Review</span>
-          <span class="media-badge">Journal des Grandes Écoles</span>
-          <span class="media-badge">Newstank</span>
-          <span class="media-badge">Le Figaro Étudiant</span>
-          <span class="media-badge">Major Prépa</span>
-          <span class="media-badge">Thotis</span>
-          <span class="media-badge">Studyrama</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ── RIGHT COLUMN ── -->
+    <!-- ── MAIN COLUMN ── -->
     <div>
 
       <!-- Career -->
-      <div class="card" id="career">
-        <h2 class="section-title">Career</h2>
+      <div class="block" id="career">
+        <div class="section-head"><p class="kicker">Parcours</p><h2 class="serif">Carrière</h2></div>
         <ul class="timeline">
-          <li>
-            <span class="tl-year">2024 – now</span>
-            <div class="tl-body"><strong>Dean — Audencia Business School</strong><span>Nantes / Paris, France · EQUIS / AACSB / AMBA</span></div>
-          </li>
-          <li>
-            <span class="tl-year">2022 – 2023</span>
-            <div class="tl-body"><strong>Director General — De Vinci Higher Education</strong><span>Paris, France</span></div>
-          </li>
-          <li>
-            <span class="tl-year">2019 – 2022</span>
-            <div class="tl-body"><strong>Deputy Director — De Vinci Higher Education</strong><span>Paris, France</span></div>
-          </li>
-          <li>
-            <span class="tl-year">2017 – 2024</span>
-            <div class="tl-body"><strong>Dean — EMLV Paris la Défense</strong><span>Paris, France · AACSB / EFMD Accredited / AMBA</span></div>
-          </li>
-          <li>
-            <span class="tl-year">2014 – 2017</span>
-            <div class="tl-body"><strong>Associate Dean — ISC Paris</strong><span>Paris, France · AACSB / AMBA</span></div>
-          </li>
-          <li>
-            <span class="tl-year">2010 – 2014</span>
-            <div class="tl-body"><strong>Dean for Faculty — EM Normandie</strong><span>Caen / Le Havre / Paris / Oxford / Dublin · EQUIS / AACSB / AMBA</span></div>
-          </li>
-          <li>
-            <span class="tl-year">2006 – 2010</span>
-            <div class="tl-body"><strong>Director of Academic Affairs — Excelia</strong><span>La Rochelle, France · EQUIS / AACSB / AMBA</span></div>
-          </li>
+          <li><span class="tl-year serif">2024 — aujourd'hui</span><div class="tl-body"><strong>Directeur Général — Audencia Business School</strong><span>Nantes / Paris, France · EQUIS / AACSB / AMBA</span></div></li>
+          <li><span class="tl-year serif">2022 — 2023</span><div class="tl-body"><strong>Directeur Général — De Vinci Higher Education</strong><span>Paris, France</span></div></li>
+          <li><span class="tl-year serif">2019 — 2022</span><div class="tl-body"><strong>Directeur Adjoint — De Vinci Higher Education</strong><span>Paris, France</span></div></li>
+          <li><span class="tl-year serif">2017 — 2024</span><div class="tl-body"><strong>Doyen — EMLV Paris La Défense</strong><span>Paris, France · AACSB / EFMD / AMBA</span></div></li>
+          <li><span class="tl-year serif">2014 — 2017</span><div class="tl-body"><strong>Doyen Associé — ISC Paris</strong><span>Paris, France · AACSB / AMBA</span></div></li>
+          <li><span class="tl-year serif">2010 — 2014</span><div class="tl-body"><strong>Doyen du corps professoral — EM Normandie</strong><span>Caen / Le Havre / Paris / Oxford / Dublin · EQUIS / AACSB / AMBA</span></div></li>
+          <li><span class="tl-year serif">2006 — 2010</span><div class="tl-body"><strong>Directeur des Affaires Académiques — Excelia</strong><span>La Rochelle, France · EQUIS / AACSB / AMBA</span></div></li>
         </ul>
       </div>
 
-      <!-- Selected publications -->
-      <div class="card" id="publications">
-        <h2 class="section-title">Selected Publications</h2>
+      <!-- Publications -->
+      <div class="block" id="publications">
+        <div class="section-head"><p class="kicker">Recherche académique</p><h2 class="serif">Publications sélectionnées</h2></div>
         <ul class="pub-list">
           <li>Guyottot, Couston &amp; Tran (2024). The impact of coopetition on student recruitment in Higher Education: a study of French business schools' admission strategy. <em>Higher Education Quarterly</em></li>
           <li>Loux, Tran &amp; Aubry (2021). L'impact de la dématérialisation des contrats de travaux publics. <em>Politiques &amp; Management Public, 38(3)</em></li>
@@ -562,74 +444,217 @@
         </ul>
       </div>
 
-      <!-- My last interviews in medias -->
-      <div class="card">
-        <h2 class="section-title">My last interviews in medias</h2>
-        <ul class="tribune-list">
+      <!-- Video Interviews -->
+      <div class="block">
+        <div class="section-head"><p class="kicker">Prises de parole</p><h2 class="serif">Interviews vidéo</h2></div>
+        <p class="press-count">9 interviews</p>
+        <ul class="video-list">
           <li>
-            <a href="https://etudiant.lefigaro.fr/article/etudes/a-l-ere-de-l-ia-l-avenir-appartient-a-ceux-qui-sauront-encore-lire-des-livres-20260306/" target="_blank" rel="noopener">À l'ère de l'IA, l'avenir appartient à ceux qui sauront encore lire des livres</a>
-            <span class="t-source">Le Figaro Étudiant — mars 2026</span>
+            <a href="https://www.youtube.com/watch?v=XrqANN8uyBs" target="_blank" rel="noopener" aria-label="YouTube"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+            <div><a href="https://www.youtube.com/watch?v=XrqANN8uyBs" target="_blank" rel="noopener">STOA 2030 : Sébastien Tran présente le nouveau plan stratégique d'Audencia</a><div class="v-source">DG sur Écoute — Thotis</div></div>
           </li>
           <li>
-            <a href="https://globalfocusmagazine.com/the-attention-economys-challenge-how-business-schools-must-address-the-cognitive-crisis/" target="_blank" rel="noopener">The Attention Economy's Challenge: How Business Schools Must Address the Cognitive Crisis</a>
-            <span class="t-source">Global Focus Magazine — janvier 2026</span>
+            <a href="https://www.youtube.com/watch?v=svoPBi3Zmms" target="_blank" rel="noopener" aria-label="YouTube"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+            <div><a href="https://www.youtube.com/watch?v=svoPBi3Zmms" target="_blank" rel="noopener">Sébastien Tran, Audencia — DG sur Écoute</a><div class="v-source">Thotis</div></div>
           </li>
           <li>
-            <a href="https://www.cge.asso.fr/liste-actualites/ia4all-experience-innovante-audencia/" target="_blank" rel="noopener">AI4ALL : l'expérience innovante d'Audencia</a>
-            <span class="t-source">Conférence des grandes écoles (CGE) — décembre 2025</span>
+            <a href="https://www.youtube.com/watch?v=AM-hI5M1DP0" target="_blank" rel="noopener" aria-label="YouTube"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+            <div><a href="https://www.youtube.com/watch?v=AM-hI5M1DP0" target="_blank" rel="noopener">Tout savoir sur Audencia, interview de Sébastien Tran</a><div class="v-source">Studyrama</div></div>
           </li>
           <li>
-            <a href="https://blog.headway-advisory.com/nous-avons-realise-la-meilleure-rentree-de-lhistoire-daudencia-sebastien-tran-directeur-general-daudencia-bs/" target="_blank" rel="noopener">« Nous avons réalisé la meilleure rentrée de l'histoire d'Audencia »</a>
-            <span class="t-source">Blog Headway — décembre 2025</span>
+            <a href="https://www.youtube.com/watch?v=BUcrnf-1aig" target="_blank" rel="noopener" aria-label="YouTube"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+            <div><a href="https://www.youtube.com/watch?v=BUcrnf-1aig" target="_blank" rel="noopener">Tout savoir sur Audencia, entretien avec Sébastien Tran DG de l'école</a><div class="v-source">Studyrama</div></div>
           </li>
           <li>
-            <a href="https://management-datascience.org/articles/45302/" target="_blank" rel="noopener">La clé pour maîtriser l'IA : savoir combiner « intelligemment » les plateformes !</a>
-            <span class="t-source">Management &amp; Data Science — mars 2025</span>
+            <a href="https://www.youtube.com/watch?v=N_85ylIctj0" target="_blank" rel="noopener" aria-label="YouTube"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+            <div><a href="https://www.youtube.com/watch?v=N_85ylIctj0" target="_blank" rel="noopener">« Nous abordons cette rentrée avec beaucoup de nouveautés et d'innovations »</a><div class="v-source">Studyrama</div></div>
           </li>
           <li>
-            <a href="https://www.hbrfrance.fr/strategie/la-guerre-des-ia-aura-t-elle-lieu-60673" target="_blank" rel="noopener">La guerre des IA aura-t-elle lieu ?</a>
-            <span class="t-source">Harvard Business Review France — 2025</span>
+            <a href="https://www.youtube.com/watch?v=JBV9CzadtQ0&t=801s" target="_blank" rel="noopener" aria-label="YouTube"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+            <div><a href="https://www.youtube.com/watch?v=JBV9CzadtQ0&t=801s" target="_blank" rel="noopener">Former des dirigeants, mais pour quel monde ?</a><div class="v-source">L'Express Éducation Média</div></div>
           </li>
           <li>
-            <a href="https://www.hbrfrance.fr/innovation/linnovation-et-la-transition-ecologique-sont-ils-vraiment-compatibles-60292" target="_blank" rel="noopener">L'innovation et la transition écologique sont-ils vraiment compatibles ?</a>
-            <span class="t-source">Harvard Business Review France — 2024</span>
+            <a href="https://www.youtube.com/watch?v=vE7J9xglUHI" target="_blank" rel="noopener" aria-label="YouTube"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+            <div><a href="https://www.youtube.com/watch?v=vE7J9xglUHI" target="_blank" rel="noopener">Le plan stratégique le plus ambitieux de la décennie — BIG BOSS Ep.13</a><div class="v-source">Planète Grandes Écoles</div></div>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=rh-vMqhgitg" target="_blank" rel="noopener" aria-label="YouTube"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+            <div><a href="https://www.youtube.com/watch?v=rh-vMqhgitg" target="_blank" rel="noopener">Le visage des business schools en 2030 ? (feat. Audencia et ESCP)</a><div class="v-source">Major Prépa</div></div>
+          </li>
+          <li>
+            <a href="https://www.dailymotion.com/video/x90genw" target="_blank" rel="noopener" aria-label="Dailymotion"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+            <div><a href="https://www.dailymotion.com/video/x90genw" target="_blank" rel="noopener">ChatGPT va-t-il disrupter l'enseignement supérieur ?</a><div class="v-source">XerfiCanal</div></div>
           </li>
         </ul>
       </div>
 
-      <!-- Research Grants -->
-      <div class="card">
-        <h2 class="section-title">Research Grants &amp; Contracts</h2>
-        <ul class="pub-list">
-          <li>Co-holder — <strong>NEXT Chair on Future of Work</strong> (OBEA), 36-month contract, 45 K€ (2022–2025)</li>
-          <li>Scientific Lead — <strong>ANR Pilot 2.0</strong>: organizational capabilities in extended enterprises (2007–2010)</li>
-          <li>Scientific Lead — <strong>ARDECO</strong>: 24-month research contract, 228 K€ (Orange, Oberthur, Gemplus)</li>
-          <li>Scientific Lead — <strong>Egov-Bat</strong>: 36-month contract with Région Basse-Normandie, 140 K€</li>
-          <li>Scientific Lead — <strong>CIGREF Web 2.0 impact study</strong>, 20 K€ (2010–2011)</li>
-        </ul>
+      <!-- Book -->
+      <div class="block">
+        <div class="section-head"><p class="kicker">Parution</p><h2 class="serif">Ouvrage</h2></div>
+        <div class="book-card">
+          <img src="ouvrage_flexibilite.jpg" alt="Explorer la flexibilité des nouveaux modes d'organisation du travail" />
+          <div class="book-meta">
+            <strong>Explorer la flexibilité des nouveaux modes d'organisation du travail</strong>
+            <p class="b-sub">Tran S. &amp; Berkani A. (dir.)</p>
+            <p class="b-sub">Éditions Management et Société (EMS), 2025 — Collection « Questions de société »</p>
+            <a href="https://editions-ems.fr/boutique/explorer-la-flexibilite-des-nouveaux-modes-dorganisation-du-travail/" target="_blank" rel="noopener" class="btn">Commander →</a>
+          </div>
+        </div>
       </div>
 
     </div>
+
+    <!-- ── SIDEBAR ── -->
+    <div>
+      <div class="side-block" id="research">
+        <p class="side-title">Domaines de recherche</p>
+        <div class="tags">
+          <span class="tag">Management de l'innovation</span>
+          <span class="tag">Systèmes d'information</span>
+          <span class="tag">Stratégie</span>
+          <span class="tag">Entrepreneuriat</span>
+          <span class="tag">Avenir du travail</span>
+          <span class="tag">Innovation managériale</span>
+          <span class="tag">Intelligence artificielle</span>
+        </div>
+      </div>
+
+      <div class="side-block">
+        <p class="side-title">Compétences clés</p>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span><div><strong>Direction de programmes</strong><small>Accréditations, développement curriculaire, pédagogies innovantes</small></div></li>
+          <li><span class="skill-dot"></span><div><strong>Direction académique</strong><small>Recrutement, gestion des charges, politique d'incitation</small></div></li>
+          <li><span class="skill-dot"></span><div><strong>Accréditations &amp; qualité</strong><small>AACSB, EQUIS, EFMD, ISO 9001, labels d'État</small></div></li>
+          <li><span class="skill-dot"></span><div><strong>Pilotage de la recherche</strong><small>Organisation de laboratoires, budgets, contrats industriels</small></div></li>
+          <li><span class="skill-dot"></span><div><strong>Développement international</strong><small>Recrutement étudiant, doubles diplômes, implantations</small></div></li>
+          <li><span class="skill-dot"></span><div><strong>Communication institutionnelle</strong><small>Web TV, salons, relations presse</small></div></li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <p class="side-title">Formation</p>
+        <ul class="edu-list">
+          <li><span class="edu-year serif">2013</span><div class="edu-detail"><strong>HDR — Sciences de Gestion</strong><span>Université de Rouen</span></div></li>
+          <li><span class="edu-year serif">2003</span><div class="edu-detail"><strong>Doctorat — Organisation Industrielle</strong><span>Université Paris Dauphine (EQUIS)</span></div></li>
+          <li><span class="edu-year serif">2000</span><div class="edu-detail"><strong>Master — Organisation &amp; Innovation</strong><span>Université Paris Dauphine (EQUIS)</span></div></li>
+          <li><span class="edu-year serif">1999</span><div class="edu-detail"><strong>BBA — Management &amp; Finance</strong><span>Université de Reims <em>(major de promotion)</em></span></div></li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <p class="side-title">Présence média</p>
+        <div class="media-grid">
+          <span class="media-badge">HBR France</span>
+          <span class="media-badge">The Conversation</span>
+          <span class="media-badge">XERFI</span>
+          <span class="media-badge">APEC RH</span>
+          <span class="media-badge">L'Express</span>
+          <span class="media-badge">Le Figaro Étudiant</span>
+          <span class="media-badge">Le Journal du Net</span>
+          <span class="media-badge">Atlantico</span>
+          <span class="media-badge">Newstank</span>
+          <span class="media-badge">Studyrama</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRIBUNES & PRESSE -->
+  <div class="block" id="tribunes" style="margin-top: 56px;">
+    <div class="section-head"><p class="kicker">Tribunes &amp; presse</p><h2 class="serif">Prises de parole dans les médias</h2></div>
+
+    <div class="filter-bar" role="group" aria-label="Filtrer par catégorie">
+      <button class="filter-chip active" data-filter="tous">Tous</button>
+      <button class="filter-chip" data-filter="ia">IA</button>
+      <button class="filter-chip" data-filter="education">Éducation</button>
+      <button class="filter-chip" data-filter="rh">RH &amp; Management</button>
+      <button class="filter-chip" data-filter="transition">Transition écologique</button>
+      <button class="filter-chip" data-filter="innovation">Innovation</button>
+      <button class="filter-chip" data-filter="international">International</button>
+    </div>
+
+    <p class="press-count" id="pressCount"></p>
+
+    <ul class="tribune-list" id="tribuneList">
+      <li class="tribune-row" data-cat="education"><span class="tribune-date">sept. 2026</span><div class="tribune-main"><a href="https://www.mondedesgrandesecoles.fr/askip-audencia-est-lecole-a-ne-pas-rater-pour-rejoindre-livy-league-linterview-de-sebastien-tran/" target="_blank" rel="noopener">Askip, Audencia est l'école à ne pas rater pour rejoindre l'Ivy League ?</a><div class="tribune-media">le Monde des Grandes Écoles</div></div><span class="tribune-cat">Éducation</span></li>
+      <li class="tribune-row" data-cat="education"><span class="tribune-date">sept. 2026</span><div class="tribune-main"><a href="https://www.youtube.com/watch?v=JBV9CzadtQ0" target="_blank" rel="noopener">Former des dirigeants, mais pour quel monde ?</a><div class="tribune-media">L'Express</div></div><span class="tribune-cat">Éducation</span></li>
+      <li class="tribune-row" data-cat="ia"><span class="tribune-date">sept. 2026</span><div class="tribune-main"><a href="https://atlantico.fr/article/decryptage/ia-conversationnelle-cheval-de-troie-de-l-agentique-sebastien-tran" target="_blank" rel="noopener">L'IA conversationnelle, cheval de Troie de l'agentique</a><div class="tribune-media">Atlantico</div></div><span class="tribune-cat">IA</span></li>
+      <li class="tribune-row" data-cat="education"><span class="tribune-date">sept. 2026</span><div class="tribune-main"><a href="https://etudiant.lefigaro.fr/article/etudes/bac-5-mais-declasses-la-generation-oubliee-de-la-presidentielle-20260902/" target="_blank" rel="noopener">Bac+5, mais déclassés : la génération oubliée de la présidentielle</a><div class="tribune-media">Le Figaro Étudiant</div></div><span class="tribune-cat">Éducation</span></li>
+      <li class="tribune-row" data-cat="ia"><span class="tribune-date">juil. 2026</span><div class="tribune-main"><a href="https://www.journaldunet.com/intelligence-artificielle/1553191-gouverner-des-agents-ia-une-competence-manageriale-qui-depasse-la-dsi/" target="_blank" rel="noopener">Gouverner des agents IA : une compétence managériale qui dépasse la DSI</a><div class="tribune-media">Le Journal du Net</div></div><span class="tribune-cat">IA</span></li>
+      <li class="tribune-row" data-cat="transition"><span class="tribune-date">juil. 2026</span><div class="tribune-main"><a href="https://lhemicycle.com/2026/07/20/sebastien-tran-le-sujet-reste-important-pour-les-jeunes-et-les-etudiants/" target="_blank" rel="noopener">Le sujet reste important pour les jeunes</a><div class="tribune-media">L'Hémicycle</div></div><span class="tribune-cat">Transition écologique</span></li>
+      <li class="tribune-row" data-cat="ia"><span class="tribune-date">juil. 2026</span><div class="tribune-main"><a href="https://www.journaldunet.com/intelligence-artificielle/1552261-ia-la-souverainete-cognitive-derniere-competence-avant-l-effondrement/" target="_blank" rel="noopener">IA : la souveraineté cognitive, dernière compétence avant l'effondrement</a><div class="tribune-media">Le Journal du Net</div></div><span class="tribune-cat">IA</span></li>
+      <li class="tribune-row" data-cat="ia"><span class="tribune-date">juin 2026</span><div class="tribune-main"><a href="https://www.amba-bga.com/insights/the-skills-you-need-to-use-ai-effectively" target="_blank" rel="noopener">The skills you need to use AI effectively</a><div class="tribune-media">AMBA Insights</div></div><span class="tribune-cat">IA</span></li>
+      <li class="tribune-row" data-cat="international"><span class="tribune-date">mai 2026</span><div class="tribune-main"><a href="https://www.lexpress.fr/campus/sebastien-tran-dg-daudencia-il-faut-etre-present-la-ou-les-grandes-transformations-se-jouent-PUPD7GTROFGT5F3CQ3KU6WLHK4/" target="_blank" rel="noopener">Il faut être présent là où les grandes transformations se jouent</a><div class="tribune-media">L'Express</div></div><span class="tribune-cat">International</span></li>
+      <li class="tribune-row" data-cat="ia"><span class="tribune-date">mars 2026</span><div class="tribune-main"><a href="https://www.journaldunet.com/intelligence-artificielle/1549017-l-avenir-appartient-a-celles-et-ceux-qui-comprendront-la-boite-noire-de-l-ia/" target="_blank" rel="noopener">L'avenir appartient à celles et ceux qui comprendront la boîte noire de l'IA</a><div class="tribune-media">Le Journal du Net</div></div><span class="tribune-cat">IA</span></li>
+      <li class="tribune-row" data-cat="ia"><span class="tribune-date">mars 2026</span><div class="tribune-main"><a href="https://etudiant.lefigaro.fr/article/etudes/a-l-ere-de-l-ia-l-avenir-appartient-a-ceux-qui-sauront-encore-lire-des-livres-20260306/" target="_blank" rel="noopener">À l'ère de l'IA, l'avenir appartient à ceux qui sauront encore lire des livres</a><div class="tribune-media">Le Figaro Étudiant</div></div><span class="tribune-cat">IA</span></li>
+      <li class="tribune-row" data-cat="education"><span class="tribune-date">févr. 2026</span><div class="tribune-main"><a href="https://globalfocusmagazine.com/the-attention-economys-challenge-how-business-schools-must-address-the-cognitive-crisis/" target="_blank" rel="noopener">The Attention Economy's Challenge: How Business Schools Must Address the Cognitive Crisis</a><div class="tribune-media">Global Focus</div></div><span class="tribune-cat">Éducation</span></li>
+      <li class="tribune-row" data-cat="ia"><span class="tribune-date">déc. 2025</span><div class="tribune-main"><a href="https://www.cge.asso.fr/liste-actualites/ia4all-experience-innovante-audencia/" target="_blank" rel="noopener">AI4ALL : l'expérience innovante d'Audencia</a><div class="tribune-media">Grand Angle de la CGE</div></div><span class="tribune-cat">IA</span></li>
+      <li class="tribune-row" data-cat="ia"><span class="tribune-date">mars 2025</span><div class="tribune-main"><a href="https://management-datascience.org/articles/45302/" target="_blank" rel="noopener">La clé pour maîtriser l'IA : savoir combiner « intelligemment » les plateformes</a><div class="tribune-media">Management &amp; Data Science</div></div><span class="tribune-cat">IA</span></li>
+      <li class="tribune-row" data-cat="education"><span class="tribune-date">janv. 2025</span><div class="tribune-main"><a href="https://etudiant.lefigaro.fr/article/etudes/sebastien-tran-audencia-la-reelection-de-donald-trump-peut-etre-une-opportunite-pour-les-ecoles-de-commerce-francaises-20250127/" target="_blank" rel="noopener">La réélection de Donald Trump peut être une opportunité pour les écoles de commerce françaises</a><div class="tribune-media">Le Figaro Étudiant</div></div><span class="tribune-cat">Éducation</span></li>
+      <li class="tribune-row" data-cat="ia"><span class="tribune-date">juil. 2024</span><div class="tribune-main"><a href="https://www.hbrfrance.fr/strategie/la-guerre-des-ia-aura-t-elle-lieu-60673" target="_blank" rel="noopener">La guerre des IA aura-t-elle lieu ?</a><div class="tribune-media">HBR France</div></div><span class="tribune-cat">IA</span></li>
+      <li class="tribune-row" data-cat="transition"><span class="tribune-date">oct. 2023</span><div class="tribune-main"><a href="https://www.hbrfrance.fr/innovation/linnovation-et-la-transition-ecologique-sont-ils-vraiment-compatibles-60292" target="_blank" rel="noopener">L'innovation et la transition écologique sont-ils vraiment compatibles ?</a><div class="tribune-media">HBR France</div></div><span class="tribune-cat">Transition écologique</span></li>
+      <li class="tribune-row" data-cat="transition"><span class="tribune-date">sept. 2023</span><div class="tribune-main"><span class="no-link">Former aux enjeux de la transition dans l'enseignement supérieur</span><div class="tribune-media">Les Échos</div></div><span class="tribune-cat">Transition écologique</span></li>
+      <li class="tribune-row" data-cat="education"><span class="tribune-date">mai 2023</span><div class="tribune-main"><a href="https://blog.educpros.fr/sebastien-tran/2023/05/30/parcoursup-pourquoi-la-plateforme-est-elle-aussi-anxiogene/" target="_blank" rel="noopener">Parcoursup : pourquoi la plateforme est-elle aussi anxiogène ?</a><div class="tribune-media">Educpro</div></div><span class="tribune-cat">Éducation</span></li>
+      <li class="tribune-row" data-cat="rh"><span class="tribune-date">mars 2023</span><div class="tribune-main"><a href="https://theconversation.com/lultra-flexibilite-en-entreprise-une-attente-de-plus-en-plus-forte-chez-les-futurs-diplomes-201918" target="_blank" rel="noopener">L'ultra-flexibilité en entreprise, une attente de plus en plus forte chez les jeunes diplômés</a><div class="tribune-media">The Conversation France</div></div><span class="tribune-cat">RH &amp; Management</span></li>
+      <li class="tribune-row" data-cat="education"><span class="tribune-date">janv. 2023</span><div class="tribune-main"><a href="https://blog.educpros.fr/sebastien-tran/2023/01/13/le-marche-du-travail-des-jeunes-diplomes-du-superieur-en-2030-vers-le-plein-emploi/" target="_blank" rel="noopener">Le marché du travail des jeunes diplômés du supérieur en 2030 : vers le plein emploi ?</a><div class="tribune-media">Educpro</div></div><span class="tribune-cat">Éducation</span></li>
+      <li class="tribune-row" data-cat="rh"><span class="tribune-date">déc. 2022</span><div class="tribune-main"><a href="https://www.hbrfrance.fr/management/allons-nous-vers-une-amplification-des-paradoxes-manageriaux-50526" target="_blank" rel="noopener">Le fossé grandit-il entre les objectifs des entreprises et les aspirations des salariés ?</a><div class="tribune-media">HBR France</div></div><span class="tribune-cat">RH &amp; Management</span></li>
+      <li class="tribune-row" data-cat="education"><span class="tribune-date">déc. 2022</span><div class="tribune-main"><a href="https://blog.educpros.fr/sebastien-tran/2022/12/08/la-culture-scientifique-doit-elle-etre-reservee-aux-formations-scientifiques-et-aux-ecoles-dingenieurs/" target="_blank" rel="noopener">La culture scientifique doit-elle être réservée aux formations scientifiques et aux écoles d'ingénieurs ?</a><div class="tribune-media">Educpro</div></div><span class="tribune-cat">Éducation</span></li>
+      <li class="tribune-row" data-cat="rh"><span class="tribune-date">août 2022</span><div class="tribune-main"><a href="https://theconversation.com/comment-les-drh-se-representent-le-travail-de-demain-186981" target="_blank" rel="noopener">Comment les DRH se représentent le travail de demain ?</a><div class="tribune-media">The Conversation France</div></div><span class="tribune-cat">RH &amp; Management</span></li>
+      <li class="tribune-row" data-cat="rh"><span class="tribune-date">juil. 2021</span><div class="tribune-main"><a href="https://www.hbrfrance.fr/organisation/la-crise-sanitaire-un-accelerateur-dagilite-36877" target="_blank" rel="noopener">La crise sanitaire, un accélérateur d'agilité ?</a><div class="tribune-media">HBR France</div></div><span class="tribune-cat">RH &amp; Management</span></li>
+      <li class="tribune-row" data-cat="innovation"><span class="tribune-date">janv. 2021</span><div class="tribune-main"><a href="https://theconversation.com/comment-les-drh-se-representent-le-travail-de-demain-186981" target="_blank" rel="noopener">Les accélérateurs d'entreprise, un levier pour capter des ressources stratégiques</a><div class="tribune-media">The Conversation France</div></div><span class="tribune-cat">Innovation</span></li>
+      <li class="tribune-row" data-cat="rh"><span class="tribune-date">nov. 2020</span><div class="tribune-main"><a href="https://theconversation.com/transformation-digitale-le-management-de-portefeuille-de-projets-devient-incontournable-en-entreprise-149380" target="_blank" rel="noopener">Transformation digitale : le management de portefeuille de projets devient incontournable en entreprise</a><div class="tribune-media">The Conversation France</div></div><span class="tribune-cat">RH &amp; Management</span></li>
+      <li class="tribune-row" data-cat="education"><span class="tribune-date">janv. 2020</span><div class="tribune-main"><a href="https://theconversation.com/hyperconnexion-en-classe-la-bataille-nest-pas-perdue-129507" target="_blank" rel="noopener">Hyperconnexion en classe : la bataille n'est pas perdue</a><div class="tribune-media">The Conversation France</div></div><span class="tribune-cat">Éducation</span></li>
+      <li class="tribune-row" data-cat="innovation"><span class="tribune-date">mai 2019</span><div class="tribune-main"><a href="https://www.hbrfrance.fr/strategie/pourquoi-les-plateformes-multifaces-triomphent-sur-le-marche-25790" target="_blank" rel="noopener">Pourquoi les plateformes multifaces triomphent sur le marché</a><div class="tribune-media">HBR France</div></div><span class="tribune-cat">Innovation</span></li>
+      <li class="tribune-row" data-cat="ia"><span class="tribune-date">juin 2018</span><div class="tribune-main"><a href="https://theconversation.com/intelligence-artificielle-vers-une-destruction-creatrice-demplois-97637" target="_blank" rel="noopener">Intelligence Artificielle : vers une destruction créatrice d'emplois</a><div class="tribune-media">The Conversation France</div></div><span class="tribune-cat">IA</span></li>
+    </ul>
   </div>
 
   <!-- ABOUT AUDENCIA -->
   <div class="about-audencia" id="audencia">
-    <h2 class="section-title">About Audencia</h2>
-    <p>Founded in 1900, Audencia is among the best European business schools. Regularly ranked in the world's upper tier by <em>The Financial Times</em>, Audencia is accredited by <strong>EQUIS, AACSB and AMBA</strong>. It is therefore part of the small number of schools worldwide who hold this 'triple crown' accreditation. Audencia campuses are based in Nantes, Paris, La Roche-sur-Yon, Barcelone, Shanghai, Shenzhen, Chengdu and São Paulo.</p>
-    <p>First French management school to adhere to the UN's Global Compact, and a signatory of its Principles of Responsible Management Education, Audencia has long been committed to educating and guiding tomorrow's responsible managers and entrepreneurs. Audencia offers programmes in management and communication from bachelor to doctoral level. The school has signed accords with 280 international academic institutions and more than 180 national and international firms. Audencia is home to more than 8,800 students, close to 180 faculty members and has a network of over 47,000 alumni.</p>
-    <a href="https://www.audencia.com" target="_blank" rel="noopener" class="btn-outline">Visit audencia.com →</a>
+    <div class="section-head"><p class="kicker">L'institution</p><h2 class="serif">Audencia Business School</h2></div>
+    <p>Fondée en 1900, Audencia figure parmi les meilleures écoles de management européennes, régulièrement classée dans le haut du classement mondial du <em>Financial Times</em>. Audencia est accréditée <strong>EQUIS, AACSB et AMBA</strong>, rejoignant ainsi le très petit nombre d'écoles au monde détentrices de cette « triple couronne ». Ses campus sont situés à Nantes, Paris, La Roche-sur-Yon, Barcelone, Shanghai, Shenzhen, Chengdu et São Paulo.</p>
+    <p>Première grande école française signataire du Global Compact des Nations Unies et de ses Principes pour une Éducation au Management Responsable, Audencia forme depuis longtemps les managers et entrepreneurs responsables de demain. L'école propose des programmes en management et communication du bachelor au doctorat, avec des accords signés avec 280 institutions académiques internationales et plus de 180 entreprises nationales et internationales. Audencia compte plus de 8 800 étudiants, près de 180 enseignants-chercheurs et un réseau de plus de 47 000 alumni.</p>
+    <a href="https://www.audencia.com" target="_blank" rel="noopener" class="btn-outline">Visiter audencia.com →</a>
   </div>
 
 </main>
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <p>Sébastien Tran &nbsp;·&nbsp; Dean of Audencia Business School &nbsp;·&nbsp;
+  <p>Sébastien Tran &nbsp;·&nbsp; Directeur Général, Audencia Business School &nbsp;·&nbsp;
     <a href="mailto:stran@audencia.com">stran@audencia.com</a>
     &nbsp;·&nbsp;
     <a href="mailto:tran.sebastien@gmail.com">tran.sebastien@gmail.com</a>
   </p>
 </footer>
+
+<script>
+  (function () {
+    var chips = document.querySelectorAll('.filter-chip');
+    var rows = document.querySelectorAll('.tribune-row');
+    var countEl = document.getElementById('pressCount');
+
+    function applyFilter(filter) {
+      var visible = 0;
+      rows.forEach(function (row) {
+        var match = filter === 'tous' || row.getAttribute('data-cat') === filter;
+        row.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+      countEl.textContent = visible + (visible === 1 ? ' tribune' : ' tribunes');
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+        applyFilter(chip.getAttribute('data-filter'));
+      });
+    });
+
+    applyFilter('tous');
+  })();
+</script>
 
 </body>
 </html>
