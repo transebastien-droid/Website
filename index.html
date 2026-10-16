@@ -60,65 +60,85 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 
+    /* Jetons du design system « Sébastien Tran » */
     :root {
-      --navy:    #0b1f4b;
-      --blue:    #1e3a8a;
-      --mid:     #2563eb;
-      --accent:  #b5490a;
-      --cream:   #faf7f1;
-      --paper:   #fffdfa;
-      --ink:     #181511;
-      --muted:   #78716a;
-      --rule:    #e4ddd0;
-      --rule-dark: rgba(255,255,255,.18);
+      --paper: #ffffff;
+      --paper-alt: #f5f3ee;
+      --ink: #111111;
+      --ink-muted: #585d66;
+      --line: #e5e2db;
+      --line-strong: #8d8a83;
+      --navy: #0b1f4b;
+      --navy-tint: #e8edf7;
+      --on-band-muted: #b9c3da;
+      --amber: #a14a0a;
+      --amber-bright: #d97706;
+      --display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+      --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
+      --radius-sm: 4px; --radius-md: 8px; --radius-pill: 999px;
+      --shadow-book: 0 18px 40px rgba(11,31,75,0.28);
+      --shadow-card: 0 1px 2px rgba(17,17,17,0.06), 0 8px 24px rgba(17,17,17,0.06);
+      --measure: 68ch;
     }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--cream);
+      font-family: var(--sans);
+      background: var(--paper);
       color: var(--ink);
-      line-height: 1.7;
+      font-size: 17px; line-height: 28px;
+      -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
-    .serif { font-family: 'Playfair Display', serif; }
+    .serif { font-family: var(--display); }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--navy); outline-offset: 2px;
+    }
+    [id] { scroll-margin-top: 88px; }
 
-    /* ── MASTHEAD ── */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-6); }
+    @media (max-width: 1024px) { .wrap { padding: 0 var(--space-5); } }
+    @media (max-width: 640px) { .wrap { padding: 0 var(--space-4); } }
+
+    .sec { padding: var(--space-9) 0; }
+    .sec-alt { background: var(--paper-alt); }
+    .sec-tight { padding: var(--space-8) 0; }
+    @media (max-width: 640px) { .sec { padding: var(--space-8) 0; } }
+
+    /* ── EN-TÊTE ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: var(--cream);
-      border-bottom: 2px solid var(--ink);
-      padding: 0 32px;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
+      background: rgba(255,255,255,.94);
+      -webkit-backdrop-filter: saturate(1.4) blur(8px); backdrop-filter: saturate(1.4) blur(8px);
+      border-bottom: 1px solid var(--line);
+      padding: 0 var(--space-6);
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-5);
+      height: 72px;
     }
     .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      font-family: 'Playfair Display', serif;
-      font-weight: 700; font-size: 1rem; letter-spacing: .5px;
-      color: var(--ink);
+      display: flex; align-items: center; gap: 10px; white-space: nowrap;
+      font-family: var(--display); font-weight: 600; font-size: 1.3rem; color: var(--ink);
     }
-    .nav-logo img { height: 22px; }
-    .nav-right { display: flex; align-items: center; gap: 24px; }
-    .nav-links { display: flex; gap: 16px; }
+    .nav-logo img { height: 20px; }
+    .nav-right { display: flex; align-items: center; gap: var(--space-5); }
+    .nav-links { display: flex; gap: 20px; }
     .nav-links a {
-      font-size: .66rem; font-weight: 600; letter-spacing: .8px; white-space: nowrap;
-      text-transform: uppercase; color: var(--muted);
-      transition: color .2s; border-bottom: 1px solid transparent; padding-bottom: 2px;
+      font-size: 14px; font-weight: 500; white-space: nowrap; color: var(--ink);
+      padding: 6px 0; border-bottom: 2px solid transparent; transition: border-color .2s, color .2s;
     }
-    .nav-links a:hover { color: var(--accent); border-color: var(--accent); }
-    .nav-logo { white-space: nowrap; }
+    .nav-links a:hover { color: var(--navy); border-color: var(--amber-bright); }
     @media (max-width: 1320px) {
-      nav { padding: 0 20px; }
-      .nav-right { gap: 16px; }
-      .nav-links { gap: 11px; }
-      .nav-links a { font-size: .6rem; letter-spacing: .4px; }
+      nav { padding: 0 var(--space-5); }
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 13px; }
     }
-    [id] { scroll-margin-top: 76px; }
     .nav-toggle {
-      display: none; flex-direction: column; gap: 4px;
-      background: none; border: 1px solid var(--rule); border-radius: 6px;
-      padding: 9px 9px; cursor: pointer;
+      display: none; flex-direction: column; justify-content: center; gap: 4px;
+      width: 44px; height: 44px; align-items: center;
+      background: none; border: 1px solid var(--line-strong); border-radius: var(--radius-pill); cursor: pointer;
     }
     .nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
     .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
@@ -129,386 +149,288 @@
       .nav-links {
         display: none; position: absolute; top: 100%; left: 0; right: 0;
         flex-direction: column; gap: 0;
-        background: var(--cream); border-bottom: 2px solid var(--ink);
-        padding: 6px 20px 12px; box-shadow: 0 14px 24px rgba(0,0,0,.08);
+        background: var(--paper); border-bottom: 1px solid var(--line);
+        padding: 4px var(--space-5) var(--space-4); box-shadow: var(--shadow-card);
       }
       .nav-links.open { display: flex; }
-      .nav-links a { font-size: .78rem; letter-spacing: 1px; padding: 13px 0; border-bottom: 1px solid var(--rule); }
+      .nav-links a { font-size: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
       .nav-links a:last-child { border-bottom: none; }
     }
     @media (max-width: 520px) {
-      nav { padding: 0 14px; }
-      .nav-right { gap: 8px; }
-      .nav-logo { font-size: .88rem; gap: 7px; }
+      nav { padding: 0 var(--space-4); height: 64px; }
+      .nav-right { gap: var(--space-2); }
+      .nav-logo { font-size: 1.05rem; gap: 7px; }
       .nav-logo img { height: 16px !important; }
-      .lang-btn { padding: 4px 5px; }
     }
 
-    .lang-switch { display: flex; align-items: center; gap: 4px; }
+    .lang-switch { display: flex; border: 1px solid var(--line-strong); border-radius: var(--radius-pill); padding: 2px; }
     .lang-btn {
-      font-size: 1.05rem; line-height: 1;
-      background: none; border: 1px solid transparent; border-radius: 6px;
-      padding: 5px 7px; cursor: pointer;
-      opacity: .4; filter: grayscale(1);
-      transition: opacity .2s, filter .2s, border-color .2s;
+      font-family: var(--sans); font-size: 13px; font-weight: 600; line-height: 1;
+      background: none; border: 0; border-radius: var(--radius-pill);
+      padding: 8px 12px; cursor: pointer; color: var(--ink-muted);
+      transition: background .2s, color .2s;
     }
-    .lang-btn:hover { opacity: .75; }
-    .lang-btn.active { opacity: 1; filter: grayscale(0); border-color: var(--rule); }
+    .lang-btn:hover { color: var(--ink); }
+    .lang-btn.active { background: var(--ink); color: #fff; }
 
-    /* ── HERO (masthead banner) ── */
-    .hero {
-      background: linear-gradient(160deg, var(--navy) 0%, #0f2a5e 55%, #15306b 100%);
-      color: #fff;
-      padding: 72px 32px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 85% 10%, rgba(181,73,10,.22) 0%, transparent 55%);
-    }
+    /* ── HERO ── */
+    .hero { padding: var(--space-10) 0 var(--space-9); }
     .hero-inner {
-      position: relative;
-      max-width: 1140px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 300px;
-      gap: 40px; align-items: end;
-      padding-bottom: 56px;
+      display: grid; grid-template-columns: minmax(0, 1fr) 360px;
+      gap: var(--space-8); align-items: end;
     }
-    @media (max-width: 760px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-photo-wrap { order: -1; width: 160px; }
+    @media (max-width: 860px) {
+      .hero { padding: var(--space-8) 0; }
+      .hero-inner { grid-template-columns: 1fr; gap: var(--space-6); }
+      .hero-photo-wrap { order: -1; width: 200px; }
     }
     .hero-eyebrow {
-      font-size: .78rem; font-weight: 600; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--accent);
-      display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
+      font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: var(--space-5);
     }
-    .hero-eyebrow::after { content:''; flex:1; max-width: 120px; height: 1px; background: rgba(255,255,255,.3); }
     .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      line-height: .98; font-weight: 900;
-      letter-spacing: -1px;
-      margin-bottom: 18px;
+      font-family: var(--display);
+      font-size: 64px; line-height: 68px; font-weight: 600; letter-spacing: -.02em;
+      margin-bottom: var(--space-5);
+    }
+    @media (max-width: 640px) { .hero h1 { font-size: 40px; line-height: 44px; } }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5); }
+    .hero-chip {
+      border: 1px solid var(--line); border-radius: var(--radius-pill); padding: 4px 14px;
+      font-size: 13px; line-height: 20px; font-weight: 500; color: var(--ink-muted);
     }
     .hero-subtitle {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 500;
-      color: rgba(255,255,255,.82); margin-bottom: 26px;
-      max-width: 48ch;
+      font-size: 20px; line-height: 32px; max-width: 60ch; margin-bottom: var(--space-6);
     }
-    .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-    .hero-chip {
-      border: 1px solid rgba(255,255,255,.35);
-      border-radius: 999px; padding: 4px 14px;
-      font-size: .72rem; font-weight: 600; letter-spacing: .4px;
+    .hero-subtitle sup { font-size: .6em; }
+    @media (max-width: 640px) { .hero-subtitle { font-size: 18px; line-height: 29px; } }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-5); }
+    .btn-primary, .btn-ghost {
+      display: inline-flex; align-items: center; gap: 6px;
+      min-height: 48px; padding: 0 24px; border-radius: var(--radius-pill);
+      font-family: var(--sans); font-size: 15px; font-weight: 600; cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s;
     }
-    .contact-bar { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: .82rem; }
-    .contact-bar a { color: rgba(255,255,255,.75); border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: 1px; transition: color .2s, border-color .2s; }
-    .contact-bar a:hover { color: #fff; border-color: #fff; }
+    .btn-primary { background: var(--navy); color: #fff; border: 1px solid var(--navy); }
+    .btn-primary:hover { background: #142f6b; }
+    .btn-ghost { border: 1px solid var(--line-strong); color: var(--ink); background: transparent; }
+    .btn-ghost:hover { border-color: var(--ink); }
+    .contact-bar { display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; color: var(--ink-muted); }
+    .contact-bar a { border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: color .2s, border-color .2s; }
+    .contact-bar a:hover { color: var(--navy); border-color: var(--navy); }
 
-    .hero-photo-wrap { position: relative; }
-    .hero-photo {
-      width: 100%; aspect-ratio: 3/4;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,.3);
-      filter: grayscale(.15) contrast(1.05);
-    }
-    .hero-photo-caption {
-      font-size: .68rem; letter-spacing: 1px; text-transform: uppercase;
-      color: rgba(255,255,255,.5); margin-top: 8px; text-align: right;
-    }
+    .hero-photo-wrap { margin: 0; }
+    .hero-photo { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; background: var(--paper-alt); }
+    .hero-photo-caption { font-size: 13px; line-height: 20px; font-weight: 500; color: var(--ink-muted); margin-top: var(--space-2); }
 
-    /* ── BY THE NUMBERS ── */
-    .stats-banner {
-      background: var(--navy);
-      border-top: 1px solid var(--rule-dark);
+    /* ── ÉNONCÉ ── */
+    .statement { padding: 0 0 var(--space-9); }
+    .statement p {
+      font-family: var(--display); font-style: italic; font-weight: 400;
+      font-size: 36px; line-height: 50px; max-width: 32ch;
     }
+    @media (max-width: 640px) { .statement { padding-bottom: var(--space-8); } .statement p { font-size: 26px; line-height: 38px; } }
+
+    /* ── CHIFFRES CLÉS ── */
+    .stats-banner { background: var(--navy); color: #fff; }
     .stats-inner {
-      max-width: 1140px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      padding: 0 32px;
+      max-width: 1200px; margin: 0 auto; padding: var(--space-8) var(--space-6);
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6);
     }
-    @media (max-width: 600px) { .stats-inner { grid-template-columns: repeat(2,1fr); } }
-    .stat-item {
-      padding: 22px 24px; text-align: center;
-      border-left: 1px solid var(--rule-dark);
-    }
-    .stats-inner .stat-item:first-child { border-left: none; }
-    @media (max-width: 600px) { .stats-inner .stat-item:nth-child(2n+1) { border-left: none; } }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem; font-weight: 800; color: #fff; line-height: 1;
-    }
-    .stat-lbl {
-      font-size: .68rem; font-weight: 600; letter-spacing: 1px;
-      text-transform: uppercase; color: rgba(255,255,255,.55); margin-top: 6px;
-    }
+    @media (max-width: 760px) { .stats-inner { grid-template-columns: repeat(2, 1fr); padding: var(--space-7) var(--space-4); } }
+    .stat-num { font-family: var(--display); font-size: 56px; line-height: 60px; font-weight: 600; }
+    .stat-lbl { font-size: 14px; line-height: 22px; color: var(--on-band-muted); margin-top: var(--space-2); }
 
-    /* ── LAYOUT ── */
-    .container { max-width: 1140px; margin: 0 auto; padding: 64px 24px; }
-    .grid { display: grid; grid-template-columns: 1fr 320px; gap: 64px; align-items: start; }
-    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; gap: 48px; } }
-
-    /* ── SECTION KICKERS ── */
+    /* ── EN-TÊTES DE SECTION ── */
     .kicker {
-      font-size: .74rem; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--accent);
-      margin-bottom: 10px;
+      font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: var(--space-3);
     }
-    .section-head { margin-bottom: 28px; padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
-    .section-head h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.7rem; font-weight: 700; color: var(--ink);
-    }
-    .block { margin-bottom: 52px; }
+    .section-head { margin-bottom: var(--space-6); }
+    .section-head h2 { font-family: var(--display); font-size: 32px; line-height: 40px; font-weight: 600; }
+    @media (max-width: 640px) { .section-head h2 { font-size: 26px; line-height: 34px; } }
+    .block { margin-bottom: var(--space-9); }
     .block:last-child { margin-bottom: 0; }
+    .press-count { font-size: 14px; color: var(--ink-muted); margin-bottom: var(--space-4); }
 
-    /* ── ABOUT ── */
-    .about-text { font-size: 1.02rem; color: var(--ink); line-height: 1.85; max-width: 72ch; }
-    .about-text + .about-text { margin-top: 16px; }
-    .about-text .dropcap {
-      font-family: 'Playfair Display', serif;
-      float: left; font-size: 4.6rem; font-weight: 800; line-height: .78;
-      padding-right: 10px; margin-top: 2px; color: var(--navy);
-    }
-
-    .about-top { display: grid; grid-template-columns: 1fr 340px; gap: 56px; align-items: start; margin-bottom: 52px; }
+    /* ── PORTRAIT + OUVRAGE ── */
+    .about-top { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: var(--space-8); align-items: start; }
     .about-top .block { margin-bottom: 0; }
-    @media (max-width: 860px) { .about-top { grid-template-columns: 1fr; gap: 40px; } }
-    .about-top .book-card { flex-direction: column; }
-    .about-top .book-card img { width: 120px; }
+    @media (max-width: 960px) { .about-top { grid-template-columns: 1fr; gap: var(--space-7); } }
+    .about-text { max-width: var(--measure); }
+    .about-text + .about-text { margin-top: var(--space-4); }
+    .about-text strong { font-weight: 600; }
+    .about-text .dropcap { font: inherit; float: none; padding: 0; margin: 0; color: inherit; }
 
-    /* ── TIMELINE ── */
-    .timeline { list-style: none; }
-    .timeline li {
-      display: grid; grid-template-columns: 108px 1fr;
-      gap: 20px; padding: 18px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .timeline li:first-child { padding-top: 0; }
-    .timeline li:last-child { border-bottom: none; }
-    .tl-year {
-      font-family: 'Playfair Display', serif;
-      font-size: .88rem; font-weight: 700;
-      color: var(--accent); padding-top: 3px; white-space: nowrap;
-    }
-    .tl-body strong { font-size: .98rem; display: block; font-weight: 600; }
-    .tl-body span { font-size: .82rem; color: var(--muted); margin-top: 3px; display: block; }
-
-    /* ── SIDEBAR LISTS ── */
-    .side-block { margin-bottom: 44px; }
-    .side-block:last-child { margin-bottom: 0; }
-    .side-title {
-      font-size: .74rem; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--ink);
-      border-bottom: 1px solid var(--ink); padding-bottom: 8px; margin-bottom: 16px;
-    }
-
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag {
-      border: 1px solid var(--ink); border-radius: 0;
-      padding: 4px 12px; font-size: .74rem; font-weight: 600; color: var(--ink);
-    }
-
-    .edu-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .edu-list li { display: flex; gap: 14px; }
-    .edu-year { font-family: 'Playfair Display', serif; min-width: 38px; font-size: .78rem; font-weight: 700; color: var(--accent); padding-top: 2px; }
-    .edu-detail strong { font-size: .86rem; display: block; font-weight: 600; }
-    .edu-detail span { font-size: .78rem; color: var(--muted); }
-
-
-    /* ── PUBLICATIONS ── */
-    .pub-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
-    .pub-list li {
-      font-size: .9rem; padding: 0 0 0 16px;
-      border-left: 2px solid var(--accent);
-      line-height: 1.65;
-    }
-    .pub-list li em { color: var(--muted); font-style: italic; }
-
-    /* ── VIDEO LIST ── */
-    .video-list { list-style: none; display: flex; flex-direction: column; }
-    .video-list li {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .video-list li:last-child { border-bottom: none; }
-    .play-btn {
-      width: 34px; height: 34px; border-radius: 50%;
-      background: var(--ink); display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .play-btn svg { width: 13px; height: 13px; fill: var(--cream); margin-left: 2px; }
-    .video-list a { color: var(--ink); font-weight: 600; font-size: .9rem; display: block; }
-    .video-list a:hover { color: var(--accent); }
-    .video-list .v-source { font-size: .76rem; color: var(--muted); margin-top: 2px; }
-
-    /* ── BOOK ── */
-    .book-card { display: flex; gap: 22px; align-items: flex-start; }
-    .book-card img { width: 96px; box-shadow: 0 10px 28px rgba(0,0,0,.18); flex-shrink: 0; }
-    .book-meta strong { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; display: block; line-height: 1.4; margin-bottom: 8px; }
-    .book-meta .b-sub { font-size: .82rem; color: var(--muted); margin-bottom: 3px; }
+    #book { background: var(--navy-tint); border-radius: var(--radius-md); padding: var(--space-6); }
+    #book .section-head { margin-bottom: var(--space-5); }
+    #book .section-head h2 { font-size: 22px; line-height: 30px; }
+    .book-card { display: flex; gap: var(--space-5); align-items: flex-start; }
+    .book-card img { width: 120px; box-shadow: var(--shadow-book); flex-shrink: 0; display: block; }
+    .book-meta strong { font-family: var(--display); font-size: 20px; line-height: 28px; font-weight: 600; display: block; margin-bottom: var(--space-3); }
+    .book-meta .b-sub { font-size: 14px; line-height: 22px; color: var(--ink-muted); }
+    @media (max-width: 480px) { .book-card { flex-direction: column; } }
     .btn {
       display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 12px; font-size: .78rem; font-weight: 600;
-      color: var(--accent); border-bottom: 1px solid var(--accent);
-      padding-bottom: 2px;
+      min-height: 44px; margin-top: var(--space-4); padding: 0 20px;
+      border-radius: var(--radius-pill); background: var(--navy); color: #fff;
+      font-family: var(--sans); font-size: 15px; font-weight: 600; border: 1px solid var(--navy); cursor: pointer;
+      transition: background .2s;
     }
-    .btn:hover { color: var(--ink); border-color: var(--ink); }
+    .btn:hover { background: #142f6b; }
 
-    /* ── TRIBUNES — PRESS INDEX ── */
-    .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    /* ── PARCOURS + BARRE LATÉRALE ── */
+    .grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: var(--space-8); align-items: start; }
+    @media (max-width: 960px) { .grid { grid-template-columns: 1fr; gap: var(--space-7); } }
+
+    .timeline { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+    .timeline li {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px var(--space-5);
+      border: 1px solid var(--line); border-radius: var(--radius-sm);
+      padding: 20px var(--space-5); transition: box-shadow .2s;
+    }
+    .timeline li:hover { box-shadow: var(--shadow-card); }
+    .tl-year { order: 2; font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink-muted); white-space: nowrap; }
+    .timeline li:first-child .tl-year { color: var(--amber); }
+    .tl-body strong { font-size: 18px; line-height: 28px; font-weight: 600; display: block; }
+    .tl-body span { font-size: 14px; line-height: 22px; color: var(--ink-muted); margin-top: 2px; display: block; }
+
+    .side-block { margin-bottom: var(--space-7); }
+    .side-block:last-child { margin-bottom: 0; }
+    .side-title { font-family: var(--display); font-size: 22px; line-height: 30px; font-weight: 600; margin-bottom: var(--space-4); }
+    .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .tag {
+      border: 1px solid var(--line); border-radius: var(--radius-pill);
+      padding: 4px 14px; font-size: 14px; line-height: 22px; font-weight: 500;
+    }
+    .tag:last-child { background: var(--navy-tint); border-color: var(--navy-tint); color: var(--navy); }
+    .edu-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-4); }
+    .edu-list li { display: grid; grid-template-columns: 48px 1fr; gap: var(--space-4); }
+    .edu-year { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--ink-muted); padding-top: 1px; }
+    .edu-detail strong { font-size: 15px; line-height: 22px; display: block; font-weight: 600; }
+    .edu-detail span { font-size: 14px; line-height: 22px; color: var(--ink-muted); }
+
+    /* ── PUBLICATIONS ── */
+    .pub-list { list-style: none; border-top: 1px solid var(--line); max-width: 900px; }
+    .pub-list li { padding: 20px 0; border-bottom: 1px solid var(--line); font-size: 16px; line-height: 26px; }
+    .pub-list li em { color: var(--ink-muted); font-style: italic; }
+
+    /* ── CONFÉRENCES ── */
+    .conf-list { list-style: none; border-top: 1px solid var(--line); }
+    .conf-row {
+      display: grid; grid-template-columns: 140px 1fr; gap: var(--space-5); align-items: baseline;
+      padding: 20px 0; border-bottom: 1px solid var(--line);
+    }
+    @media (max-width: 640px) { .conf-row { grid-template-columns: 1fr; gap: 4px; } }
+    .conf-date { font-size: 13px; font-weight: 500; color: var(--ink-muted); white-space: nowrap; }
+    .conf-main a { font-family: var(--display); font-size: 20px; line-height: 28px; font-weight: 600; display: block; transition: color .2s; }
+    .conf-main a:hover { color: var(--navy); text-decoration: underline; text-decoration-color: var(--amber-bright); text-underline-offset: 4px; }
+    .conf-org { font-size: 14px; line-height: 22px; color: var(--ink-muted); margin-top: 4px; }
+
+    /* ── INTERVIEWS VIDÉO ── */
+    .video-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: var(--space-8); align-items: start; }
+    @media (max-width: 860px) { .video-layout { grid-template-columns: 1fr; gap: var(--space-6); } .video-side { order: -1; max-width: 240px; } }
+    .video-list { list-style: none; border-top: 1px solid var(--line); }
+    .video-list li { display: flex; align-items: center; gap: var(--space-4); padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .play-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid var(--line-strong); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background .2s, border-color .2s;
+    }
+    .play-btn svg { width: 14px; height: 14px; fill: var(--ink); margin-left: 2px; transition: fill .2s; }
+    .video-list li:hover .play-btn { background: var(--navy); border-color: var(--navy); }
+    .video-list li:hover .play-btn svg { fill: #fff; }
+    .video-list a { font-weight: 500; font-size: 16px; line-height: 24px; display: block; }
+    .video-list a:hover { color: var(--navy); }
+    .video-list .v-source { font-size: 13px; line-height: 20px; color: var(--ink-muted); margin-top: 2px; }
+    .section-photo { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 50% 8%; display: block; background: var(--paper-alt); }
+
+    /* ── TRIBUNES ── */
+    .filter-bar { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-6); }
     .filter-chip {
-      font-size: .72rem; font-weight: 600; letter-spacing: .6px;
-      text-transform: uppercase;
-      border: 1px solid var(--ink); border-radius: 999px;
-      padding: 6px 16px; background: transparent; color: var(--ink);
-      cursor: pointer; transition: background .15s, color .15s;
+      font-family: var(--sans); font-size: 14px; font-weight: 600;
+      min-height: 40px; padding: 0 16px; border-radius: var(--radius-pill);
+      border: 1px solid var(--line-strong); background: transparent; color: var(--ink);
+      cursor: pointer; transition: background .15s, color .15s, border-color .15s;
     }
-    .filter-chip:hover { background: rgba(24,21,17,.06); }
-    .filter-chip.active { background: var(--ink); color: var(--cream); }
-
-    .press-count { font-size: .8rem; color: var(--muted); margin-bottom: 20px; }
-
-    .tribune-list { list-style: none; }
+    .filter-chip:hover { border-color: var(--ink); }
+    .filter-chip.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .tribune-list { list-style: none; border-top: 1px solid var(--line); }
     .tribune-row {
-      display: grid; grid-template-columns: 96px 1fr auto;
-      gap: 20px; align-items: baseline;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--rule);
+      display: grid; grid-template-columns: 110px 1fr auto;
+      gap: var(--space-2) var(--space-6); align-items: baseline;
+      padding: 20px 0; border-bottom: 1px solid var(--line);
     }
-    .tribune-row:first-child { padding-top: 0; }
     @media (max-width: 640px) {
-      .tribune-row { grid-template-columns: 1fr; gap: 4px; }
+      .tribune-row { grid-template-columns: 1fr; gap: 6px; }
       .tribune-date { order: 3; }
-      .tribune-cat { order: 2; }
+      .tribune-cat { order: 2; justify-self: start; }
     }
-    .tribune-date {
-      font-size: .76rem; font-weight: 600; color: var(--muted);
-      white-space: nowrap; letter-spacing: .3px;
+    .tribune-date { font-size: 13px; font-weight: 500; color: var(--ink-muted); white-space: nowrap; }
+    .tribune-main a, .tribune-main span.no-link {
+      font-family: var(--display); font-size: 20px; line-height: 28px; font-weight: 600; display: block;
     }
-    .tribune-main a {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.02rem; font-weight: 600; color: var(--ink);
-      line-height: 1.35; display: block;
-    }
-    .tribune-main a:hover { color: var(--accent); }
-    .tribune-main span.no-link {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.02rem; font-weight: 600; color: var(--ink);
-      line-height: 1.35; display: block;
-    }
-    .tribune-media {
-      font-size: .78rem; color: var(--muted); margin-top: 4px;
-    }
+    .tribune-main a { transition: color .2s; }
+    .tribune-main a:hover { color: var(--navy); text-decoration: underline; text-decoration-color: var(--amber-bright); text-underline-offset: 4px; }
+    .tribune-media { font-size: 14px; line-height: 22px; color: var(--ink-muted); margin-top: 4px; }
     .tribune-cat {
-      font-size: .68rem; font-weight: 700; letter-spacing: .6px;
-      text-transform: uppercase; color: var(--accent);
-      white-space: nowrap; justify-self: end;
+      font-size: 13px; line-height: 20px; font-weight: 500; white-space: nowrap; justify-self: end;
+      border: 1px solid var(--line-strong); border-radius: var(--radius-pill); padding: 2px 10px;
     }
+    .tribune-row[data-cat="ia"] .tribune-cat { background: var(--navy-tint); border-color: var(--navy-tint); color: var(--navy); }
 
-    /* ── ABOUT AUDENCIA ── */
-    .about-audencia {
-      background: var(--navy);
-      color: #fff; padding: 52px 44px;
-      margin-top: 8px;
-    }
-    .about-audencia .kicker { color: var(--accent); }
-    .about-audencia .section-head { border-bottom: 1px solid var(--rule-dark); }
+    /* ── AUDENCIA ── */
+    .about-audencia { background: var(--navy); color: #fff; padding: var(--space-9) 0; }
+    @media (max-width: 640px) { .about-audencia { padding: var(--space-8) 0; } }
+    .about-audencia .kicker { color: var(--on-band-muted); }
     .about-audencia .section-head h2 { color: #fff; }
-    .about-audencia p { font-size: .96rem; color: rgba(255,255,255,.82); line-height: 1.85; max-width: 72ch; }
-    .about-audencia p + p { margin-top: 16px; }
+    .about-audencia p { color: rgba(255,255,255,.88); max-width: var(--measure); }
+    .about-audencia p + p { margin-top: var(--space-4); color: var(--on-band-muted); }
     .btn-outline {
       display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 22px; font-size: .8rem; font-weight: 600;
-      color: #fff; border-bottom: 1px solid rgba(255,255,255,.5);
-      padding-bottom: 2px;
+      min-height: 48px; margin-top: var(--space-6); padding: 0 24px; border-radius: var(--radius-pill);
+      background: #fff; color: var(--navy); font-size: 15px; font-weight: 600; transition: background .2s;
     }
-    .btn-outline:hover { border-color: #fff; color: var(--accent); }
+    .btn-outline:hover { background: var(--navy-tint); }
+    .about-audencia-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: var(--space-8); align-items: center; }
+    @media (max-width: 860px) { .about-audencia-grid { grid-template-columns: 1fr; gap: var(--space-6); } .aud-photo-wrap { order: -1; max-width: 320px; } }
+    .aud-photo-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
 
-    .about-audencia-grid { display: grid; grid-template-columns: 1fr 340px; gap: 40px; align-items: center; }
-    @media (max-width: 760px) { .about-audencia-grid { grid-template-columns: 1fr; } .aud-photo-wrap { order: -1; } }
-    .aud-photo-wrap img {
-      width: 100%; aspect-ratio: 4/5; object-fit: cover;
-      border: 1px solid rgba(255,255,255,.3);
-      filter: grayscale(.1) contrast(1.05);
-    }
-
-    /* ── SECTION PHOTO (video interviews portrait) ── */
-    .video-layout { display: grid; grid-template-columns: 1fr 240px; gap: 36px; align-items: start; }
-    @media (max-width: 760px) { .video-layout { grid-template-columns: 1fr; } .video-side { order: -1; max-width: 240px; } }
-    .section-photo {
-      width: 100%; aspect-ratio: 3/4; object-fit: cover;
-      object-position: 50% 8%;
-      border: 1px solid var(--rule);
-      filter: grayscale(.1) contrast(1.02);
-    }
-
-    /* ── CONFERENCES ── */
-    .conf-list { list-style: none; }
-    .conf-row {
-      display: grid; grid-template-columns: 110px 1fr; gap: 20px; align-items: baseline;
-      padding: 16px 0; border-bottom: 1px solid var(--rule);
-    }
-    .conf-row:first-child { padding-top: 0; }
-    .conf-row:last-child { border-bottom: none; }
-    @media (max-width: 640px) { .conf-row { grid-template-columns: 1fr; gap: 4px; } }
-    .conf-date { font-size: .76rem; font-weight: 600; color: var(--muted); white-space: nowrap; letter-spacing: .3px; }
-    .conf-main a {
-      font-family: 'Playfair Display', serif; font-size: 1.02rem; font-weight: 600;
-      color: var(--ink); line-height: 1.35; display: block;
-    }
-    .conf-main a:hover { color: var(--accent); }
-    .conf-org { font-size: .78rem; color: var(--muted); margin-top: 4px; }
-
-    /* ── CONTACT FORM ── */
-    .contact-form { max-width: 640px; display: flex; flex-direction: column; gap: 18px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    /* ── CONTACT ── */
+    .contact-form { max-width: 720px; display: flex; flex-direction: column; gap: var(--space-5); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
     @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
-    .form-field { display: flex; flex-direction: column; gap: 6px; }
-    .form-field label {
-      font-size: .72rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
-    }
+    .form-field { display: flex; flex-direction: column; gap: var(--space-2); }
+    .form-field label { font-size: 15px; line-height: 20px; font-weight: 600; color: var(--ink); }
     .form-field input, .form-field textarea {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: .92rem; color: var(--ink);
-      border: none; border-bottom: 1px solid var(--rule);
-      padding: 8px 2px; background: transparent; resize: vertical;
+      font-family: var(--sans); font-size: 17px; color: var(--ink);
+      min-height: 48px; padding: var(--space-3) var(--space-4);
+      border: 1px solid var(--line-strong); border-radius: var(--radius-sm);
+      background: var(--paper); resize: vertical;
     }
-    .form-field input:focus, .form-field textarea:focus {
-      outline: none; border-bottom-color: var(--accent);
-    }
-    .contact-form .btn { align-self: flex-start; }
-    .form-note { font-size: .78rem; color: var(--muted); }
+    .form-field input:focus, .form-field textarea:focus { outline: 2px solid var(--navy); outline-offset: 0; border-color: var(--navy); }
+    .contact-form .btn { align-self: flex-start; margin-top: 0; min-height: 48px; padding: 0 28px; }
+    .form-note { font-size: 14px; line-height: 22px; color: var(--ink-muted); }
 
-    /* ── LEGAL + CONTACT FALLBACK ── */
-    .legal p { font-size: .84rem; color: var(--muted); line-height: 1.7; max-width: 80ch; }
-    .legal p + p { margin-top: 10px; }
-    .legal .section-head h2 { font-size: 1.25rem; }
+    /* ── MENTIONS LÉGALES ── */
+    .legal p { font-size: 14px; color: var(--ink-muted); line-height: 22px; max-width: 80ch; }
+    .legal p + p { margin-top: var(--space-3); }
+    .legal .section-head h2 { font-size: 22px; line-height: 30px; }
     .legal strong { color: var(--ink); font-weight: 600; }
-    .legal a, .form-alt a { color: var(--ink); border-bottom: 1px solid var(--rule); }
-    .form-alt { margin-top: 18px; font-size: .86rem; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+    .legal a, .form-alt a { color: var(--navy); border-bottom: 1px solid var(--line-strong); }
+    .form-alt { margin-top: var(--space-5); font-size: 15px; color: var(--ink-muted); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
     .form-alt a { font-weight: 600; }
     .copy-btn {
-      font-family: inherit; font-size: .72rem; font-weight: 600; letter-spacing: .4px;
-      border: 1px solid var(--ink); border-radius: 999px; background: transparent; color: var(--ink);
-      padding: 4px 12px; cursor: pointer;
+      font-family: inherit; font-size: 13px; font-weight: 600;
+      min-height: 36px; padding: 0 14px;
+      border: 1px solid var(--line-strong); border-radius: var(--radius-pill); background: transparent; color: var(--ink); cursor: pointer;
     }
-    .copy-btn:hover { background: rgba(24,21,17,.06); }
+    .copy-btn:hover { border-color: var(--ink); }
 
-    /* ── FOOTER ── */
-    footer {
-      text-align: center; padding: 36px 24px;
-      font-size: .8rem; color: var(--muted);
-      border-top: 2px solid var(--ink);
-      background: var(--cream);
-    }
-    footer a { color: var(--ink); border-bottom: 1px solid var(--rule); }
-    footer a:hover { color: var(--accent); border-color: var(--accent); }
+    /* ── PIED DE PAGE ── */
+    footer { background: var(--navy); color: var(--on-band-muted); font-size: 14px; line-height: 24px; padding: var(--space-7) var(--space-5); text-align: center; }
+    footer a { color: #fff; border-bottom: 1px solid rgba(255,255,255,.35); }
+    footer a:hover { border-color: #fff; }
   </style>
 </head>
 <body>
@@ -532,8 +454,8 @@
       <a href="#contact" data-i18n="nav.contact">Échanger</a>
     </div>
     <div class="lang-switch" role="group" aria-label="Choix de la langue / Language">
-      <button class="lang-btn active" data-lang-btn="fr" aria-label="Français" title="Français">🇫🇷</button>
-      <button class="lang-btn" data-lang-btn="en" aria-label="English" title="English">🇬🇧</button>
+      <button class="lang-btn active" type="button" data-lang-btn="fr" aria-label="Français" title="Français">FR</button>
+      <button class="lang-btn" type="button" data-lang-btn="en" aria-label="English" title="English">EN</button>
     </div>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
   </div>
@@ -541,28 +463,36 @@
 
 <!-- ══ HERO ══ -->
 <header class="hero">
-  <div class="hero-inner">
+  <div class="wrap hero-inner">
     <div>
       <p class="hero-eyebrow" data-i18n="hero.eyebrow">Directeur Général · Audencia Business School</p>
-      <h1 class="serif">Sébastien<br>Tran</h1>
+      <h1 class="serif">Sébastien Tran</h1>
       <p class="hero-subtitle" data-i18n="hero.subtitle">Professeur en management de l'innovation, directeur d'Audencia Business School, l'une des meilleures écoles de management en France, 36<sup>ème</sup> meilleure business school du monde au Financial Times 2026 et 34<sup>ème</sup> meilleur programme en management dans le classement international QS 2027.</p>
       <div class="hero-chips">
         <span class="hero-chip">EQUIS · AACSB · AMBA</span>
         <span class="hero-chip">Nantes / Paris, France</span>
       </div>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact" data-i18n="hero.cta">Échanger avec moi</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/sebastien-tran-415b355/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn-ghost" href="https://x.com/sebtran" target="_blank" rel="noopener">X ↗</a>
+      </div>
       <div class="contact-bar">
         <a href="mailto:stran@audencia.com">stran@audencia.com</a>
         <a href="mailto:tran.sebastien@gmail.com">tran.sebastien@gmail.com</a>
-        <a href="https://www.linkedin.com/in/sebastien-tran-415b355/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://x.com/sebtran" target="_blank" rel="noopener">X</a>
       </div>
     </div>
-    <div class="hero-photo-wrap">
+    <figure class="hero-photo-wrap">
       <img src="photo.jpg" alt="Sébastien Tran" class="hero-photo" />
-      <p class="hero-photo-caption">Sébastien Tran, 2026</p>
-    </div>
+      <figcaption class="hero-photo-caption">Sébastien Tran, 2026</figcaption>
+    </figure>
   </div>
 </header>
+
+<!-- ══ ÉNONCÉ ══ -->
+<section class="statement">
+  <div class="wrap"><p data-i18n="hero.statement">Plus de vingt ans à diriger des écoles de management et à étudier comment l’innovation, et aujourd’hui l’IA, transforme les organisations et la manière d’apprendre.</p></div>
+</section>
 
 <!-- ══ BY THE NUMBERS ══ -->
 <div class="stats-banner">
@@ -575,10 +505,10 @@
 </div>
 
 <!-- ══ MAIN ══ -->
-<main class="container">
+<main>
 
   <!-- ABOUT + BOOK -->
-  <div class="about-top">
+  <section class="sec"><div class="wrap about-top">
     <div class="block" id="about">
     <div class="section-head"><p class="kicker" data-i18n="about.kicker">Portrait</p><h2 class="serif" data-i18n="about.h2">Qui est Sébastien Tran</h2></div>
     <p class="about-text" data-i18n="about.p1"><span class="dropcap">S</span>ébastien Tran est Directeur Général d'<strong>Audencia Business School</strong> (fondée en 1900, triple accréditée EQUIS, AACSB et AMBA), l'une des grandes écoles de management européennes, présente à Nantes, Paris, La Roche-sur-Yon, Barcelone, Shenzhen, Shanghai, Chengdu et São Paulo. Il est titulaire d'un <strong>doctorat en Organisation Industrielle</strong> de l'Université Paris Dauphine (EQUIS) et d'une <strong>Habilitation à Diriger des Recherches (HDR)</strong> en sciences de gestion de l'Université de Rouen.</p>
@@ -596,9 +526,9 @@
       </div>
     </div>
     </div>
-  </div>
+  </div></section>
 
-  <div class="grid">
+  <section class="sec sec-alt"><div class="wrap grid">
 
     <!-- ── MAIN COLUMN ── -->
     <div>
@@ -616,6 +546,37 @@
           <li><span class="tl-year serif">2006 — 2010</span><div class="tl-body"><strong data-i18n="career.role7">Directeur des Affaires Académiques — Excelia</strong><span>La Rochelle, France · EQUIS / AACSB / AMBA</span></div></li>
         </ul>
       </div>
+
+    </div>
+
+    <!-- ── SIDEBAR ── -->
+    <div>
+      <div class="side-block" id="research">
+        <p class="side-title" data-i18n="side.research.title">Domaines de recherche</p>
+        <div class="tags">
+          <span class="tag" data-i18n="tag1">Management de l'innovation</span>
+          <span class="tag" data-i18n="tag2">Systèmes d'information</span>
+          <span class="tag" data-i18n="tag3">Stratégie</span>
+          <span class="tag" data-i18n="tag4">Entrepreneuriat</span>
+          <span class="tag" data-i18n="tag5">Avenir du travail</span>
+          <span class="tag" data-i18n="tag6">Innovation managériale</span>
+          <span class="tag" data-i18n="tag7">Intelligence artificielle</span>
+        </div>
+      </div>
+
+      <div class="side-block">
+        <p class="side-title" data-i18n="side.edu.title">Formation</p>
+        <ul class="edu-list">
+          <li><span class="edu-year serif">2013</span><div class="edu-detail"><strong data-i18n="edu1.label">HDR — Sciences de Gestion</strong><span data-i18n="edu1.loc">Université de Rouen</span></div></li>
+          <li><span class="edu-year serif">2003</span><div class="edu-detail"><strong data-i18n="edu2.label">Doctorat — Organisation Industrielle</strong><span data-i18n="edu2.loc">Université Paris Dauphine (EQUIS)</span></div></li>
+          <li><span class="edu-year serif">2000</span><div class="edu-detail"><strong data-i18n="edu3.label">Master — Organisation &amp; Innovation</strong><span data-i18n="edu3.loc">Université Paris Dauphine (EQUIS)</span></div></li>
+          <li><span class="edu-year serif">1999</span><div class="edu-detail"><strong data-i18n="edu4.label">MSG — Management &amp; Finance</strong><span data-i18n="edu4.loc">Université de Reims <em>(major de promotion)</em></span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
 
       <!-- Publications -->
       <div class="block" id="publications">
@@ -696,37 +657,10 @@
         </div>
       </div>
 
-    </div>
-
-    <!-- ── SIDEBAR ── -->
-    <div>
-      <div class="side-block" id="research">
-        <p class="side-title" data-i18n="side.research.title">Domaines de recherche</p>
-        <div class="tags">
-          <span class="tag" data-i18n="tag1">Management de l'innovation</span>
-          <span class="tag" data-i18n="tag2">Systèmes d'information</span>
-          <span class="tag" data-i18n="tag3">Stratégie</span>
-          <span class="tag" data-i18n="tag4">Entrepreneuriat</span>
-          <span class="tag" data-i18n="tag5">Avenir du travail</span>
-          <span class="tag" data-i18n="tag6">Innovation managériale</span>
-          <span class="tag" data-i18n="tag7">Intelligence artificielle</span>
-        </div>
-      </div>
-
-      <div class="side-block">
-        <p class="side-title" data-i18n="side.edu.title">Formation</p>
-        <ul class="edu-list">
-          <li><span class="edu-year serif">2013</span><div class="edu-detail"><strong data-i18n="edu1.label">HDR — Sciences de Gestion</strong><span data-i18n="edu1.loc">Université de Rouen</span></div></li>
-          <li><span class="edu-year serif">2003</span><div class="edu-detail"><strong data-i18n="edu2.label">Doctorat — Organisation Industrielle</strong><span data-i18n="edu2.loc">Université Paris Dauphine (EQUIS)</span></div></li>
-          <li><span class="edu-year serif">2000</span><div class="edu-detail"><strong data-i18n="edu3.label">Master — Organisation &amp; Innovation</strong><span data-i18n="edu3.loc">Université Paris Dauphine (EQUIS)</span></div></li>
-          <li><span class="edu-year serif">1999</span><div class="edu-detail"><strong data-i18n="edu4.label">MSG — Management &amp; Finance</strong><span data-i18n="edu4.loc">Université de Reims <em>(major de promotion)</em></span></div></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  </div></section>
 
   <!-- TRIBUNES & PRESSE -->
-  <div class="block" id="tribunes" style="margin-top: 56px;">
+  <section class="sec sec-alt"><div class="wrap block" id="tribunes">
     <div class="section-head"><p class="kicker" data-i18n="trib.kicker">Tribunes &amp; presse</p><h2 class="serif" data-i18n="trib.h2">Prises de parole dans les médias</h2></div>
 
     <div class="filter-bar" role="group" aria-label="Filtrer par catégorie">
@@ -773,11 +707,11 @@
       <li class="tribune-row" data-cat="innovation" data-date="2019-05-07"><span class="tribune-date"></span><div class="tribune-main"><a href="https://www.hbrfrance.fr/strategie/pourquoi-les-plateformes-multifaces-triomphent-sur-le-marche-25790" target="_blank" rel="noopener">Pourquoi les plateformes multifaces triomphent sur le marché</a><div class="tribune-media">HBR France</div></div><span class="tribune-cat"></span></li>
       <li class="tribune-row" data-cat="ia" data-date="2018-06-20"><span class="tribune-date"></span><div class="tribune-main"><a href="https://theconversation.com/intelligence-artificielle-vers-une-destruction-creatrice-demplois-97637" target="_blank" rel="noopener">Intelligence Artificielle : vers une destruction créatrice d'emplois</a><div class="tribune-media">The Conversation France</div></div><span class="tribune-cat"></span></li>
     </ul>
-  </div>
+  </div></section>
 
   <!-- ABOUT AUDENCIA -->
-  <div class="about-audencia" id="audencia">
-    <div class="about-audencia-grid">
+  <section class="about-audencia" id="audencia">
+    <div class="wrap about-audencia-grid">
       <div>
         <div class="section-head"><p class="kicker" data-i18n="aud.kicker">L'institution</p><h2 class="serif">Audencia Business School</h2></div>
         <p data-i18n="aud.p1">Fondée en 1900, Audencia figure parmi les meilleures écoles de management européennes, régulièrement classée dans le haut du classement mondial du <em>Financial Times</em>. Audencia est accréditée <strong>EQUIS, AACSB et AMBA</strong>, rejoignant ainsi le très petit nombre d'écoles au monde détentrices de cette « triple couronne ». Ses campus sont situés à Nantes, Paris, La Roche-sur-Yon, Barcelone, Shanghai, Shenzhen, Chengdu et São Paulo.</p>
@@ -788,10 +722,10 @@
         <img src="photo-alumni.jpg" alt="Sébastien Tran lors d'un événement Audencia Alumni" />
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- ══ CONTACT ══ -->
-  <div class="block" id="contact" style="margin-top: 56px;">
+  <section class="sec"><div class="wrap block" id="contact">
     <div class="section-head"><p class="kicker" data-i18n="contact.kicker">Échanger</p><h2 class="serif" data-i18n="contact.h2">Contact</h2></div>
     <form class="contact-form" id="contactForm">
       <div class="form-row">
@@ -812,20 +746,20 @@
         <label for="cf-message" data-i18n="contact.message">Message</label>
         <textarea id="cf-message" name="message" rows="5" required></textarea>
       </div>
-      <button type="submit" class="btn" style="border:1.5px solid var(--accent); cursor:pointer; background:none; font-family:inherit;" data-i18n="contact.send">Envoyer →</button>
+      <button type="submit" class="btn" data-i18n="contact.send">Envoyer →</button>
       <p class="form-note" data-i18n="contact.note">Le bouton ouvre votre application de messagerie avec le message pré-rempli.</p>
     </form>
     <p class="form-alt"><span data-i18n="contact.alt">Si rien ne s'ouvre, écrivez directement à</span> <a href="mailto:stran@audencia.com">stran@audencia.com</a> <button type="button" class="copy-btn" id="copyMail" data-i18n="contact.copy">Copier l'adresse</button></p>
-  </div>
+  </div></section>
 
   <!-- ══ MENTIONS LÉGALES ══ -->
-  <div class="block legal" id="mentions" style="margin-top: 56px;">
+  <section class="sec sec-alt sec-tight"><div class="wrap block legal" id="mentions">
     <div class="section-head"><p class="kicker" data-i18n="legal.kicker">Informations légales</p><h2 class="serif" data-i18n="legal.h2">Mentions légales</h2></div>
     <p data-i18n="legal.p1"><strong>Éditeur et directeur de la publication :</strong> Sébastien Tran. Contact : <a href="mailto:stran@audencia.com">stran@audencia.com</a>.</p>
     <p data-i18n="legal.p2"><strong>Hébergeur :</strong> GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis (service GitHub Pages).</p>
     <p data-i18n="legal.p3"><strong>Données personnelles :</strong> ce site n'utilise ni cookie, ni outil de mesure d'audience, ni police ou service publicitaire tiers. Le choix de langue est conservé uniquement dans votre navigateur et n'est jamais transmis. Le formulaire de contact ouvre votre application de messagerie : le message est envoyé depuis votre messagerie, pas par ce site. Comme tout hébergeur, GitHub peut enregistrer l'adresse IP des visiteurs dans ses journaux techniques (voir sa politique de confidentialité). Pour toute question sur vos données, contactez l'éditeur à l'adresse ci-dessus.</p>
     <p data-i18n="legal.p4"><strong>Propriété intellectuelle :</strong> sauf mention contraire, les textes et la mise en page sont la propriété de Sébastien Tran. Le nom et le logo Audencia appartiennent à Audencia Business School. Les articles, vidéos et conférences cités renvoient vers les contenus de leurs éditeurs respectifs, qui en conservent les droits.</p>
-  </div>
+  </div></section>
 
 </main>
 
@@ -847,6 +781,8 @@
       "nav.about": "Portrait", "nav.book": "Parution", "nav.career": "Parcours", "nav.publications": "Recherche académique",
       "nav.conf": "Interventions", "nav.video": "Prises de parole", "nav.tribunes": "Tribunes &amp; presse", "nav.audencia": "L'institution", "nav.contact": "Échanger",
       "hero.eyebrow": "Directeur Général · Audencia Business School",
+      "hero.cta": "Échanger avec moi",
+      "hero.statement": "Plus de vingt ans à diriger des écoles de management et à étudier comment l’innovation, et aujourd’hui l’IA, transforme les organisations et la manière d’apprendre.",
       "hero.subtitle": "Professeur en management de l'innovation, directeur d'Audencia Business School, l'une des meilleures écoles de management en France, 36<sup>ème</sup> meilleure business school du monde au Financial Times 2026 et 34<sup>ème</sup> meilleur programme en management dans le classement international QS 2027.",
       "stats.tribunes": "Tribunes &amp; médias", "stats.articles": "Articles évalués par les pairs",
       "stats.books": "Ouvrages &amp; chapitres", "stats.comms": "Communications",
@@ -895,6 +831,8 @@
       "nav.about": "About", "nav.book": "New Release", "nav.career": "Career", "nav.publications": "Academic Research",
       "nav.conf": "Speaking", "nav.video": "Media Appearances", "nav.tribunes": "Op-eds &amp; Press", "nav.audencia": "The Institution", "nav.contact": "Get in touch",
       "hero.eyebrow": "Dean · Audencia Business School",
+      "hero.cta": "Get in touch",
+      "hero.statement": "More than twenty years leading business schools and studying how innovation, and now AI, is reshaping organizations and the way we learn.",
       "hero.subtitle": "Professor of Innovation Management, Dean of Audencia Business School, one of the leading management schools in France, ranked 36<sup>th</sup> best business school in the world by the Financial Times 2026 and 34<sup>th</sup> best management programme in the QS international ranking 2027.",
       "stats.tribunes": "Op-eds &amp; media", "stats.articles": "Peer-reviewed articles",
       "stats.books": "Books &amp; chapters", "stats.comms": "Conference papers",
