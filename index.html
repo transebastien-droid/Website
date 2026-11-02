@@ -122,7 +122,6 @@
       display: flex; align-items: center; gap: 10px; white-space: nowrap;
       font-family: var(--display); font-weight: 600; font-size: 1.3rem; color: var(--ink);
     }
-    .nav-logo img { height: 20px; }
     .nav-right { display: flex; align-items: center; gap: var(--space-5); }
     .nav-links { display: flex; gap: 20px; }
     .nav-links a {
@@ -160,18 +159,18 @@
       nav { padding: 0 var(--space-4); height: 64px; }
       .nav-right { gap: var(--space-2); }
       .nav-logo { font-size: 1.05rem; gap: 7px; }
-      .nav-logo img { height: 16px !important; }
     }
 
     .lang-switch { display: flex; border: 1px solid var(--line-strong); border-radius: var(--radius-pill); padding: 2px; }
     .lang-btn {
-      font-family: var(--sans); font-size: 13px; font-weight: 600; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
       background: none; border: 0; border-radius: var(--radius-pill);
-      padding: 8px 12px; cursor: pointer; color: var(--ink-muted);
-      transition: background .2s, color .2s;
+      padding: 7px 10px; cursor: pointer; opacity: .45;
+      transition: background .2s, opacity .2s;
     }
-    .lang-btn:hover { color: var(--ink); }
-    .lang-btn.active { background: var(--ink); color: #fff; }
+    .lang-btn svg { width: 24px; height: 16px; display: block; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.18); }
+    .lang-btn:hover { opacity: .8; }
+    .lang-btn.active { background: var(--navy-tint); opacity: 1; }
 
     /* ── HERO ── */
     .hero { padding: var(--space-10) 0 var(--space-9); }
@@ -392,6 +391,11 @@
       background: #fff; color: var(--navy); font-size: 15px; font-weight: 600; transition: background .2s;
     }
     .btn-outline:hover { background: var(--navy-tint); }
+    .aud-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+    .aud-actions .btn-outline { margin-top: 0; }
+    .aud-actions .btn-outline svg { width: 16px; height: 16px; fill: currentColor; flex: none; }
+    .aud-logo { display: inline-flex; align-items: center; background: #fff; border-radius: var(--radius-pill); padding: 12px 24px; margin-bottom: var(--space-5); }
+    .aud-logo img { height: 28px; display: block; }
     .about-audencia-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: var(--space-8); align-items: center; }
     @media (max-width: 860px) { .about-audencia-grid { grid-template-columns: 1fr; gap: var(--space-6); } .aud-photo-wrap { order: -1; max-width: 320px; } }
     .aud-photo-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
@@ -438,7 +442,6 @@
 <!-- ══ MASTHEAD ══ -->
 <nav>
   <a class="nav-logo" href="https://www.audencia.com" target="_blank" rel="noopener">
-    <img src="audencia-logo.svg" alt="Audencia" style="height: 20px;">
     Sébastien Tran
   </a>
   <div class="nav-right">
@@ -454,8 +457,8 @@
       <a href="#contact" data-i18n="nav.contact">Échanger</a>
     </div>
     <div class="lang-switch" role="group" aria-label="Choix de la langue / Language">
-      <button class="lang-btn active" type="button" data-lang-btn="fr" aria-label="Français" title="Français">FR</button>
-      <button class="lang-btn" type="button" data-lang-btn="en" aria-label="English" title="English">EN</button>
+      <button class="lang-btn active" type="button" data-lang-btn="fr" aria-label="Français" title="Français"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#002395"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ed2939"/></svg></button>
+      <button class="lang-btn" type="button" data-lang-btn="en" aria-label="English" title="English"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0l60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0l60 40M60 0L0 40" stroke="#c8102e" stroke-width="3"/><path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="13"/><path d="M30 0v40M0 20h60" stroke="#c8102e" stroke-width="8"/></svg></button>
     </div>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
   </div>
@@ -582,13 +585,24 @@
       <div class="block" id="publications">
         <div class="section-head"><p class="kicker" data-i18n="pub.kicker">Recherche académique</p><h2 class="serif" data-i18n="pub.h2">Publications sélectionnées</h2></div>
         <ul class="pub-list">
+          <li>Tran &amp; Berkani (2025). <em>Explorer la flexibilité des nouveaux modes d'organisation du travail</em>. Éditions Management et Société (EMS)</li>
           <li>Guyottot, Couston &amp; Tran (2024). The impact of coopetition on student recruitment in Higher Education: a study of French business schools' admission strategy. <em>Higher Education Quarterly</em></li>
+          <li>Tran (2024). L'enjeu stratégique des soft skills dans le secteur de l'enseignement supérieur. In <em>Formation : Comment relever le défi des compétences transversales ?</em>, Éditions EMS</li>
           <li>Loux, Tran &amp; Aubry (2021). L'impact de la dématérialisation des contrats de travaux publics. <em>Politiques &amp; Management Public, 38(3)</em></li>
           <li>Favre-Bonté, Arreola &amp; Tran (2021). A new kind of strategic factor market to access strategic resources. <em>M@n@gement, 24(3)</em> — CNRS 2 / FNEGE 2</li>
+          <li>Tran (2021). L'enseignement supérieur va-t-il être disrupté par de nouveaux acteurs ? In <em>Transformation digitale et enseignement supérieur : comment seront formés les managers de demain</em>, Éditions EMS</li>
           <li>Loux, Aubry, Tran &amp; Baudoin (2020). Multi-sided platforms in B2B contexts. <em>Industrial Marketing Management, 84</em> — CNRS 2 / FNEGE 2</li>
+          <li>Tran &amp; Arreola (2019). Soutien des incubateurs à l'innovation sociale sur les territoires : le cas d'I-Engage. <em>Entreprendre &amp; Innover, 41</em>, p. 19-31 — FNEGE 4</li>
           <li>Canet &amp; Tran (2017). Quel est le rôle du substrat technique dans l'appropriation d'une innovation managériale. <em>Management International</em> — CNRS 3 / FNEGE 2</li>
           <li>Tran &amp; Bertin (2015). Changing organizational models of IT departments as a result of cloud computing. <em>Systèmes d'Information et Management, 20(4)</em> — CNRS 2 / FNEGE 2</li>
+          <li>Tran (2014). Quelle contribution des technologies collaboratives à la configuration des organisations ? <em>Systèmes d'Information et Management, 19(2)</em>, p. 73-109 — CNRS 2 / FNEGE 2</li>
+          <li>Tran &amp; Favre-Bonté (2013). L'apport d'Internet aux petites entreprises touristiques dans la construction de leur positionnement stratégique : le cas des hébergeurs. <em>Revue Internationale des PME, 26(1)</em>, p. 45-64 — CNRS 4 / FNEGE 3</li>
+          <li>Tran (2010). Quand les TIC réussissent trop bien dans les organisations : le cas du courrier électronique chez les managers. <em>Management &amp; Avenir, 34</em>, p. 200-215 — CNRS 4 / FNEGE 3</li>
+          <li>Tran (coord.) (2010). <em>Les stratégies de rétention de l'entreprise</em>, sous la direction de J.-F. Trinquecoste. Dareios, 224 p.</li>
+          <li>Tran &amp; Poulin (2010). <em>Information and Communication Technologies and SMEs: From theory to practice</em>. Cambridge Scholars Publishing</li>
           <li>Tran (2007). TIC et jeu concurrentiel : le cas des places de marché électroniques. <em>Revue Française de Gestion, 33(173)</em> — CNRS 3 / FNEGE 2</li>
+          <li>Tran (2006). The strategic implication of electronic marketplaces: from commerce transactions to interorganizational supply chain activities? <em>International Journal of Business Performance Management, 8(1)</em>, p. 47-61</li>
+          <li>Tran &amp; Zmiro (2005). Infomédiation et commerce électronique : vers un renforcement des processus concurrentiels ? In <em>Stratégies concurrentielles : le renouveau théorique en pratique</em> (Le Goff &amp; Bensebaa, éd.), chap. 3, Éditions EMS, p. 87-103</li>
         </ul>
       </div>
 
@@ -714,10 +728,14 @@
   <section class="about-audencia" id="audencia">
     <div class="wrap about-audencia-grid">
       <div>
+        <a class="aud-logo" href="https://www.audencia.com" target="_blank" rel="noopener"><img src="audencia-logo.svg" alt="Audencia Business School"></a>
         <div class="section-head"><p class="kicker" data-i18n="aud.kicker">L'institution</p><h2 class="serif">Audencia Business School</h2></div>
         <p data-i18n="aud.p1">Fondée en 1900, Audencia figure parmi les meilleures écoles de management européennes, régulièrement classée dans le haut du classement mondial du <em>Financial Times</em>. Audencia est accréditée <strong>EQUIS, AACSB et AMBA</strong>, rejoignant ainsi le très petit nombre d'écoles au monde détentrices de cette « triple couronne ». Ses campus sont situés à Nantes, Paris, La Roche-sur-Yon, Barcelone, Shanghai, Shenzhen, Chengdu et São Paulo.</p>
         <p data-i18n="aud.p2">Première grande école française signataire du Global Compact des Nations Unies et de ses Principes pour une Éducation au Management Responsable, Audencia forme depuis longtemps les managers et entrepreneurs responsables de demain. L'école propose des programmes en management et communication du bachelor au doctorat, avec des accords signés avec 280 institutions académiques internationales et plus de 180 entreprises nationales et internationales. Audencia compte près de 9 500 étudiants, près de 200 enseignants-chercheurs et un réseau de plus de 50 000 alumni.</p>
-        <a href="https://www.audencia.com" target="_blank" rel="noopener" class="btn-outline" data-i18n="aud.cta">Visiter audencia.com →</a>
+        <div class="aud-actions">
+          <a href="https://www.audencia.com" target="_blank" rel="noopener" class="btn-outline" data-i18n="aud.cta">Visiter audencia.com →</a>
+          <a href="https://www.youtube.com/watch?v=uyWBRn4wtiU" target="_blank" rel="noopener" class="btn-outline"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span data-i18n="aud.video">Voir la vidéo de présentation</span></a>
+        </div>
       </div>
       <div class="aud-photo-wrap">
         <img src="photo-alumni.jpg" alt="Sébastien Tran lors d'un événement Audencia Alumni" />
@@ -815,6 +833,7 @@
       "aud.p1": "Fondée en 1900, Audencia figure parmi les meilleures écoles de management européennes, régulièrement classée dans le haut du classement mondial du <em>Financial Times</em>. Audencia est accréditée <strong>EQUIS, AACSB et AMBA</strong>, rejoignant ainsi le très petit nombre d'écoles au monde détentrices de cette « triple couronne ». Ses campus sont situés à Nantes, Paris, La Roche-sur-Yon, Barcelone, Shanghai, Shenzhen, Chengdu et São Paulo.",
       "aud.p2": "Première grande école française signataire du Global Compact des Nations Unies et de ses Principes pour une Éducation au Management Responsable, Audencia forme depuis longtemps les managers et entrepreneurs responsables de demain. L'école propose des programmes en management et communication du bachelor au doctorat, avec des accords signés avec 280 institutions académiques internationales et plus de 180 entreprises nationales et internationales. Audencia compte près de 9 500 étudiants, près de 200 enseignants-chercheurs et un réseau de plus de 50 000 alumni.",
       "aud.cta": "Visiter audencia.com →",
+      "aud.video": "Voir la vidéo de présentation",
       "contact.kicker": "Échanger", "contact.h2": "Contact",
       "contact.name": "Nom", "contact.emailLabel": "Email", "contact.subject": "Sujet", "contact.message": "Message",
       "contact.send": "Envoyer →",
@@ -865,6 +884,7 @@
       "aud.p1": "Founded in 1900, Audencia is among the best European business schools, regularly ranked in the world's upper tier by the <em>Financial Times</em>. Audencia is accredited <strong>EQUIS, AACSB and AMBA</strong>, placing it among the very small number of schools worldwide holding this 'triple crown'. Its campuses are located in Nantes, Paris, La Roche-sur-Yon, Barcelona, Shanghai, Shenzhen, Chengdu and São Paulo.",
       "aud.p2": "The first French business school to sign the United Nations Global Compact and its Principles for Responsible Management Education, Audencia has long trained the responsible managers and entrepreneurs of tomorrow. The school offers programmes in management and communication from bachelor's to doctoral level, with agreements signed with 280 international academic institutions and more than 180 national and international companies. Audencia is home to close to 9,500 students, nearly 200 faculty members and a network of more than 50,000 alumni.",
       "aud.cta": "Visit audencia.com →",
+      "aud.video": "Watch the school presentation video",
       "contact.kicker": "Get in touch", "contact.h2": "Contact",
       "contact.name": "Name", "contact.emailLabel": "Email", "contact.subject": "Subject", "contact.message": "Message",
       "contact.send": "Send →",
